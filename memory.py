@@ -32,11 +32,7 @@ def dessineCase(x, y, l, n, t, c="blue"):
 	t.color(c[0])
 
 
-def dessineCases(cases):
-	afficheContenu([])
-
-
-def afficheContenu(choix):
+def afficheContenu(choix=[]):
 	tc.clear() 	# on efface ce qui a été dessiné par la tortue des cases
 
 	# selon le choix on dessine la case ou ce qui est caché dessous
@@ -54,12 +50,11 @@ def afficheContenu(choix):
 			)
 		else:
 			dessineCase(x, y, tailleCase, i + 1, tc)
-	ontimer(lambda: dessineCases(cases), 5000)  # On appelle dessineCases après une attente de 2s
-
 
 tracer(0)  # le dessin est instantané (on ne voit pas le déplacement de la tortue)
 td = Turtle()  # tortue du décor
 tc = Turtle()  # tortue des cases
+tc.hideturtle() # on cache la tortue
 
 decor.main(td)  # on dessine le décor
 
@@ -78,7 +73,7 @@ cases = [
 	["brown", formes.carre, False],
 	["magenta", formes.carre, False],
 ]
-dessineCases(cases)
+afficheContenu()
 
 while True:
 	choix1 = int(numinput("choix 1 ?", "n ?")) - 1  # choix de la case par le joueur
@@ -86,7 +81,11 @@ while True:
 	choix2 = int(numinput("choix 2 ?", "n ?")) - 1  # choix de la case par le joueur
 	afficheContenu([choix1, choix2])
 
+	update() # On force l'actualisation de l'affichage
 	if cases[choix1][1] == cases[choix2][1]:
-		cases[choix1][2] = cases[choix2][2] = True
-		if not any(not case[2] for case in cases):
-			break
+		cases[choix1][2] = cases[choix2][2] = True # Si les formes sont les mêmes, on garde les cases retournées
+	else:
+		time.sleep(1) # On attend 1s
+		afficheContenu()
+	if not any(not case[2] for case in cases):
+		break
