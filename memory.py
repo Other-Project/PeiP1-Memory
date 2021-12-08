@@ -33,10 +33,7 @@ def dessineCase(x, y, l, n, t, c="blue"):
 
 
 def dessineCases(cases):
-	tc.clear()
-	for i in range(len(cases)):
-		x,y=positionCase(i)
-		dessineCase(x, y, tailleCase, i + 1, tc)
+	afficheContenu([])
 
 
 def afficheContenu(choix):
