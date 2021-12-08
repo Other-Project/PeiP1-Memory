@@ -52,9 +52,8 @@ def afficheContenu(choix=[]):
 			dessineCase(x, y, tailleCase, i + 1, tc)
 
 tracer(0)  # le dessin est instantané (on ne voit pas le déplacement de la tortue)
-td = Turtle()  # tortue du décor
-tc = Turtle()  # tortue des cases
-tc.hideturtle() # on cache la tortue
+td = Turtle(visible=False)  # tortue du décor
+tc = Turtle(visible=False)  # tortue des cases
 
 decor.main(td)  # on dessine le décor
 
