@@ -32,7 +32,7 @@ def calculeLongueurCote(tailleMax, nbCotes):
 	 cote = tailleMax * math.tan(a)
 
   	# Pour des raisons que j'ignore,
-   # la taille retournée est parfois plus grand que la taille maximale,
+   # la taille retournée est parfois plus grande que la taille maximale,
    # dans ces cas, on se rabat sur la taille max
 	return min(tailleMax, cote)
 
