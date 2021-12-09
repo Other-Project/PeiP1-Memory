@@ -67,6 +67,16 @@ def carre(x, y, longueur, c, t, fill=True):
 	polygone(x, y, longueur, c, t, 4, fill=fill)
 
 
+def pentagone(x, y, longueur, c, t, fill=True):
+	"""Dessine un pentagone"""
+	polygone(x, y, longueur, c, t, 5, fill=fill)
+
+
+def hexagone(x, y, longueur, c, t, fill=True):
+	"""Dessine un hexagone"""
+	polygone(x, y, longueur, c, t, 6, fill=fill)
+
+
 def octogone(x, y, longueur, c, t, fill=True):
 	"""Dessine un octogone"""
 	polygone(x, y, longueur, c, t, 8, fill=fill)
