@@ -1,7 +1,7 @@
 # Evan Galli et Maxence Lécard
 # Ce fichier contient les fonctions principales de notre jeu de memory
 
-from turtle import *
+import turtle
 import time
 import random
 import formes
@@ -59,9 +59,9 @@ def afficheContenu(choix=[]):
 		else:
 			dessineCase(x, y, tailleCase, i + 1, tc)
 
-tracer(0)  # le dessin est instantané (on ne voit pas le déplacement de la tortue)
-td = Turtle(visible=False)  # tortue du décor
-tc = Turtle(visible=False)  # tortue des cases
+turtle.tracer(0)  # le dessin est instantané (on ne voit pas le déplacement de la tortue)
+td = turtle.Turtle(visible=False)  # tortue du décor
+tc = turtle.Turtle(visible=False)  # tortue des cases
 
 decor.main(td)  # on dessine le décor
 
@@ -80,12 +80,12 @@ random.shuffle(cases) # On mélange les cartes
 #### Boucle de jeu
 afficheContenu()
 while True:
-	choix1 = int(numinput("choix 1 ?", "n ?")) - 1  # choix de la case par le joueur
+	choix1 = int(turtle.numinput("choix 1 ?", "n ?")) - 1  # choix de la case par le joueur
 	afficheContenu([choix1])
-	choix2 = int(numinput("choix 2 ?", "n ?")) - 1  # choix de la case par le joueur
+	choix2 = int(turtle.numinput("choix 2 ?", "n ?")) - 1  # choix de la case par le joueur
 	afficheContenu([choix1, choix2])
 
-	update() # On force l'actualisation de l'affichage
+	turtle.update() # On force l'actualisation de l'affichage
 	if cases[choix1][0] == cases[choix2][0] and cases[choix1][1] == cases[choix2][1]:
 		cases[choix1][2] = cases[choix2][2] = True # Si les formes et les couleurs sont les mêmes, on garde les cases retournées
 	else:
