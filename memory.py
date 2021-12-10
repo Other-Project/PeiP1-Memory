@@ -3,14 +3,22 @@
 
 from turtle import *
 import time
+import random
 import formes
 import decor
 
-tailleCase = 60
+# Grille
+grilleColonnes = 4   # X
+grilleLignes   = 3   # Y
+tailleCase     = 60  # Taille des cases
+grillePadding  = 40  # Espacement entre les cases
+nombreDeCases=grilleLignes * grilleColonnes
 tailleContenu = tailleCase / 2
 marginContenu = (tailleCase - tailleContenu) / 2
-grillePadding = 40
-grilleColonnes = 4
+
+# Couleurs et formes disponibles
+_couleurs = [ "blue", "red", "green", "yellow", "orange", "pink", "gray", "violet", "lightBlue", "lightGreen", "brown", "magenta" ]
+_formes = [ formes.rond, formes.triangle, formes.carre, formes.pentagone, formes.hexagone, formes.octogone, formes.croix, formes.etoile, formes.coeur ]
 
 def positionCase(i):
    y=int(i/grilleColonnes)
@@ -57,23 +65,20 @@ tc = Turtle(visible=False)  # tortue des cases
 
 decor.main(td)  # on dessine le décor
 
-# dessin des cases
-cases = [
-	["blue", formes.coeur, False],
-	["red", formes.coeur, False],
-	["green", formes.croix, False],
-	["yellow", formes.rond, False],
-	["orange", formes.rond, False],
-	["pink", formes.croix, False],
-	["gray", formes.triangle, False],
-	["violet", formes.triangle, False],
-	["lightBlue", formes.octogone, False],
-	["lightGreen", formes.octogone, False],
-	["brown", formes.carre, False],
-	["magenta", formes.carre, False],
-]
-afficheContenu()
 
+#### Génération aléatoire des paires de cartes
+cases = []
+for i in range(nombreDeCases//2):
+   couleur = random.choice(_couleurs) # On choisit une couleur aléatoirement
+   _couleurs.remove(couleur)
+   forme = random.choice(_formes) # On choisit une forme aléatoirement
+   _formes.remove(forme)
+   cases += [[couleur, forme, False]]*2 # On ajoute 2 fois la carte afin qu'il existe une paire
+random.shuffle(cases) # On mélange les cartes
+
+
+#### Boucle de jeu
+afficheContenu()
 while True:
 	choix1 = int(numinput("choix 1 ?", "n ?")) - 1  # choix de la case par le joueur
 	afficheContenu([choix1])
@@ -81,8 +86,8 @@ while True:
 	afficheContenu([choix1, choix2])
 
 	update() # On force l'actualisation de l'affichage
-	if cases[choix1][1] == cases[choix2][1]:
-		cases[choix1][2] = cases[choix2][2] = True # Si les formes sont les mêmes, on garde les cases retournées
+	if cases[choix1][0] == cases[choix2][0] and cases[choix1][1] == cases[choix2][1]:
+		cases[choix1][2] = cases[choix2][2] = True # Si les formes et les couleurs sont les mêmes, on garde les cases retournées
 	else:
 		time.sleep(1) # On attend 1s
 		afficheContenu()
