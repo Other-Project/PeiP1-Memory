@@ -59,6 +59,11 @@ def afficheContenu(choix=[]):
 		else:
 			dessineCase(x, y, tailleCase, i + 1, tc)
 
+
+screen = turtle.Screen()
+screen.cv._rootwindow.resizable(False, False) # On désactive le redimensionnement
+turtle.setworldcoordinates(-1, -1, screen.window_width() - 1, screen.window_height() - 1) # On crée un systeme de coordonnées commencant en bas à gauche de l'écran
+
 turtle.tracer(0)  # le dessin est instantané (on ne voit pas le déplacement de la tortue)
 td = turtle.Turtle(visible=False)  # tortue du décor
 tc = turtle.Turtle(visible=False)  # tortue des cases
