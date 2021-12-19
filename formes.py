@@ -18,7 +18,7 @@ def dessine(x, y, couleur, t, resetHeading=True, a=0, w=5):
 
 
 def point(x, y, t, w=10, c="blue"):
-    dessine(x, y, t, w=w)
+    dessine(x, y, c, t, w=w)
     t.forward(1)
 
 
@@ -47,7 +47,7 @@ def polygone(x, y, taille, couleur, t, nbCotes, resetHeading=True, fill=True):
     angle = 360 / nbCotes
     if fill:
         t.begin_fill()
-    for i in range(nbCotes):
+    for _ in range(nbCotes):
         t.forward(dist)
         t.left(angle)
     if fill:
@@ -57,7 +57,7 @@ def polygone(x, y, taille, couleur, t, nbCotes, resetHeading=True, fill=True):
 
 def triangle(x, y, taille, c, t, fill=True):
     """Dessine un triangle"""
-    tailleY = math.sqrt(calculeLongueurCote(taille, 3) ** 2 - (taille / 2) ** 2)
+    tailleY = math.sqrt(calculeLongueurCote(taille, 3)**2 - (taille / 2)**2)
     y += (taille - tailleY) / 2
     polygone(x, y, taille, c, t, 3, fill=fill)
 
@@ -115,9 +115,8 @@ def etoile(x, y, longueur, c, t):
     dessine(x, y, c, t)
     polygone(x, y + longueur / 3, taille, c, t, 3, False)  # Premier triangle
     t.right(180)  # On dessine le triangle dans le sens inverse
-    polygone(
-        x + taille, y + 2 * longueur / 3, taille, c, t, 3, False
-    )  # Deuxieme triangle
+    polygone(x + taille, y + 2 * longueur / 3, taille, c, t, 3,
+             False)  # Deuxieme triangle
 
 
 def coeur(x, y, taille, c, t):

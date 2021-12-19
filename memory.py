@@ -27,11 +27,11 @@ decor.main(td)  # on dessine le decor
 nombreDeCases = settings.grilleLignes * settings.grilleColonnes
 cases = []
 for i in range(nombreDeCases // 2):
-   couleur = random.choice(settings._couleurs)  # On choisit une couleur aleatoirement
-   settings._couleurs.remove(couleur)
-   forme = random.choice(settings._formes)  # On choisit une forme aleatoirement
-   settings._formes.remove(forme)
-   cases += [[couleur, forme, False]] * 2  # On ajoute 2 fois la carte afin qu'il existe une paire
+    couleur = random.choice(settings._couleurs)  # On choisit une couleur aleatoirement
+    settings._couleurs.remove(couleur)
+    forme = random.choice(settings._formes)  # On choisit une forme aleatoirement
+    settings._formes.remove(forme)
+    cases += [[couleur, forme, False]] * 2  # On ajoute 2 fois la carte afin qu'il existe une paire
 random.shuffle(cases)  # On melange les cartes
 
 
