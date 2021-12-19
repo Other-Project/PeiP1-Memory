@@ -1,36 +1,38 @@
-# Evan Galli et Maxence Lécard
-# Ce fichier contient le code principal de notre jeu de memory
+"""
+Evan Galli et Maxence Lécard
+Ce fichier contient le code principal de notre jeu de memory
+"""
 
 import turtle
 import time
 import random
-import formes
 import decor
 import cartes
 import settings
 
 
 screen = turtle.Screen()
-screen.cv._rootwindow.resizable(False, False) # On désactive le redimensionnement
-turtle.setworldcoordinates(-1, -1, screen.window_width() - 1, screen.window_height() - 1) # On crée un systeme de coordonnées commencant en bas à gauche de l'écran
+screen.cv._rootwindow.resizable(False, False)  # On desactive le redimensionnement
+# On cree un systeme de coordonnees commencant en bas à gauche de l'écran
+turtle.setworldcoordinates(-1, -1, screen.window_width() - 1, screen.window_height() - 1)
 
-turtle.tracer(0)  # le dessin est instantané (on ne voit pas le déplacement de la tortue)
-td = turtle.Turtle(visible=False)  # tortue du décor
+turtle.tracer(0)  # le dessin est instantané (on ne voit pas le deplacement de la tortue)
+td = turtle.Turtle(visible=False)  # tortue du decor
 tc = turtle.Turtle(visible=False)  # tortue des cases
 
-decor.main(td)  # on dessine le décor
+decor.main(td)  # on dessine le decor
 
 
-#### Génération aléatoire des paires de cartes
-nombreDeCases  = settings.grilleLignes * settings.grilleColonnes
+# Generation aleatoire des paires de cartes
+nombreDeCases = settings.grilleLignes * settings.grilleColonnes
 cases = []
-for i in range(nombreDeCases//2):
-   couleur = random.choice(settings._couleurs) # On choisit une couleur aléatoirement
+for i in range(nombreDeCases // 2):
+   couleur = random.choice(settings._couleurs)  # On choisit une couleur aleatoirement
    settings._couleurs.remove(couleur)
-   forme = random.choice(settings._formes) # On choisit une forme aléatoirement
+   forme = random.choice(settings._formes)  # On choisit une forme aleatoirement
    settings._formes.remove(forme)
-   cases += [[couleur, forme, False]]*2 # On ajoute 2 fois la carte afin qu'il existe une paire
-random.shuffle(cases) # On mélange les cartes
+   cases += [[couleur, forme, False]] * 2  # On ajoute 2 fois la carte afin qu'il existe une paire
+random.shuffle(cases)  # On melange les cartes
 
 
 #### Boucle de jeu
