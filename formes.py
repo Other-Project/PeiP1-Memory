@@ -39,7 +39,7 @@ def calculeLongueurCote(tailleMax, nbCotes):
 
 
 def polygone(x, y, taille, couleur, t, nbCotes, resetHeading=True, fill=True):
-    """Dessine aux coordonnÃ©es (x,y) et avec la tortue t, un polygone a nbCotes, de taille et de couleur definies"""
+    """Dessine aux coordonnees (x,y) et avec la tortue t, un polygone regulier a nbCotes, de taille et de couleur definies"""
     dist = calculeLongueurCote(taille, nbCotes)
     marginX = (taille - dist) / 2
 
@@ -115,8 +115,7 @@ def etoile(x, y, longueur, c, t):
     dessine(x, y, c, t)
     polygone(x, y + longueur / 3, taille, c, t, 3, False)  # Premier triangle
     t.right(180)  # On dessine le triangle dans le sens inverse
-    polygone(x + taille, y + 2 * longueur / 3, taille, c, t, 3,
-             False)  # Deuxieme triangle
+    polygone(x + taille, y + 2 * longueur / 3, taille, c, t, 3, False)  # Deuxieme triangle
 
 
 def coeur(x, y, taille, c, t):

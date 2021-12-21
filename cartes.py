@@ -31,6 +31,19 @@ def positionCase(i):
     return (x * dist, y * dist)
 
 
+def obtenirCase(cases, x, y):
+    """Calcule l'index de la case presente aux coordonnees en parametre"""
+    dist = settings.tailleCase + settings.grillePadding
+    i = (x / dist) + (y / dist) * settings.grilleColonnes - 1
+
+    if i < 0:
+        return -1
+    elif i >= len(cases):
+        return -1
+    else:
+        return int(i) # TODO, detecter si clic entre les cases
+
+
 def afficheContenu(tc, cases, choix=[]):
     """Redessine l'entierete de la grille des cases
     en revelant le contenu des cases comprises dans choix

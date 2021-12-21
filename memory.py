@@ -1,5 +1,5 @@
 """
-Evan Galli et Maxence Lécard
+Evan Galli et Maxence Lecard
 Ce fichier contient le code principal de notre jeu de memory
 """
 
@@ -13,7 +13,7 @@ import settings
 
 screen = turtle.Screen()
 screen.cv._rootwindow.resizable(False, False)  # On desactive le redimensionnement
-# On cree un systeme de coordonnees commencant en bas à gauche de l'écran
+# On cree un systeme de coordonnees commencant en bas a gauche de l'ecran
 turtle.setworldcoordinates(-1, -1, screen.window_width() - 1, screen.window_height() - 1)
 
 turtle.tracer(0)  # le dessin est instantané (on ne voit pas le deplacement de la tortue)
@@ -35,19 +35,36 @@ for i in range(nombreDeCases // 2):
 random.shuffle(cases)  # On melange les cartes
 
 
-#### Boucle de jeu
-cartes.afficheContenu(tc, cases)
-while True:
-	choix1 = int(turtle.numinput("choix 1 ?", "n ?")) - 1  # choix de la case par le joueur
-	cartes.afficheContenu(tc, cases, [choix1])
-	choix2 = int(turtle.numinput("choix 2 ?", "n ?")) - 1  # choix de la case par le joueur
-	cartes.afficheContenu(tc, cases, [choix1, choix2])
+choix1 = -1
 
-	turtle.update() # On force l'actualisation de l'affichage
-	if cases[choix1][0] == cases[choix2][0] and cases[choix1][1] == cases[choix2][1]:
-		cases[choix1][2] = cases[choix2][2] = True # Si les formes et les couleurs sont les mêmes, on garde les cases retournées
-	else:
-		time.sleep(1) # On attend 1s
-		cartes.afficheContenu(tc, cases)
-	if not any(not case[2] for case in cases):
-		break
+
+def clickCases(x, y):
+    global choix1
+
+    choix = cartes.obtenirCase(cases, x, y)
+    print(str(x) + " ; " + str(y) + " --> " + str(choix))
+
+    if choix1 == -1:
+        cartes.afficheContenu(tc, cases, [choix])
+        choix1 = choix
+    elif choix1 != choix and choix != - 1:
+        cartes.afficheContenu(tc, cases, [choix1, choix])
+        turtle.update()  # On force l'actualisation de l'affichage
+
+        if cases[choix1][0] == cases[choix][0] and cases[choix1][1] == cases[choix][1]:
+            # Si les formes et les couleurs sont les memes, on garde les cases retournees
+            cases[choix1][2] = cases[choix][2] = True
+        else:
+            time.sleep(1)  # On attend 1s
+            cartes.afficheContenu(tc, cases)
+
+        if not any(not case[2] for case in cases):
+            turtle.bye()
+        else:
+            choix1 = -1
+
+
+# Boucle de jeu
+cartes.afficheContenu(tc, cases)
+turtle.onscreenclick(clickCases)
+turtle.mainloop()
