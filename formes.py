@@ -17,7 +17,7 @@ def dessine(x, y, couleur, t, resetHeading=True, a=0, w=5):
     t.width(w)
 
 
-def point(x, y, t, w=10, c="blue"):
+def point(x, y, t, w=5, c="blue"):
     dessine(x, y, c, t, w=w)
     t.forward(1)
 

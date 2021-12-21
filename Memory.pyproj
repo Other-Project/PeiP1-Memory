@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>Memory</Name>
     <RootNamespace>Memory</RootNamespace>
-    <IsWindowsApplication>False</IsWindowsApplication>
+    <IsWindowsApplication>True</IsWindowsApplication>
     <TestFramework>none</TestFramework>
     <UnitTestPattern>test*.py</UnitTestPattern>
     <UnitTestRootDirectory>.</UnitTestRootDirectory>
