@@ -13,14 +13,14 @@ import settings
 
 screen = turtle.Screen()
 screen.cv._rootwindow.resizable(False, False)  # On desactive le redimensionnement
-# On cree un systeme de coordonnees commencant en bas a gauche de l'ecran
-turtle.setworldcoordinates(-1, -1, screen.window_width() - 1, screen.window_height() - 1)
+screenX = screen.window_width()
+screenY = screen.window_height()
 
 turtle.tracer(0)  # le dessin est instantané (on ne voit pas le deplacement de la tortue)
 td = turtle.Turtle(visible=False)  # tortue du decor
 tc = turtle.Turtle(visible=False)  # tortue des cases
 
-decor.main(td)  # on dessine le decor
+decor.main(screenX, screenY, td)  # on dessine le decor
 
 
 # Generation aleatoire des paires de cartes
@@ -36,13 +36,11 @@ random.shuffle(cases)  # On melange les cartes
 
 
 choix1 = -1
-
-
 def clickCases(x, y):
     global choix1
 
     choix = cartes.obtenirCase(cases, x, y)
-    print(str(x) + " ; " + str(y) + " --> " + str(choix))
+    print(str(x) + " ; " + str(y) + " --> " + str(choix)) # TODO: Fix le calcul de la case
 
     if choix1 == -1:
         cartes.afficheContenu(tc, cases, [choix])
@@ -58,11 +56,11 @@ def clickCases(x, y):
             time.sleep(1)  # On attend 1s
             cartes.afficheContenu(tc, cases)
 
+        # S'il n'y a pas de case qui n'est pas retournee (cad toute les cases sont retourne)
         if not any(not case[2] for case in cases):
-            turtle.bye()
+            turtle.bye()  # On ferme le jeu
         else:
-            choix1 = -1
-
+            choix1 = -1  # Sinon, on se prepare a recevoir un prochain couple
 
 # Boucle de jeu
 cartes.afficheContenu(tc, cases)

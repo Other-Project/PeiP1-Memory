@@ -6,8 +6,11 @@ Ce fichier contient les fonctions dédiées au fonctionnement des cases
 import settings
 import formes
 
-tailleContenu = settings.tailleCase / 2
-marginContenu = (settings.tailleCase - tailleContenu) / 2
+tailleContenu = settings.tailleCase / 2  # Le contenu est deux fois plus petit que la case
+marginContenu = (settings.tailleCase - tailleContenu) / 2  # Decalage (en x et y) du contenu par rapport a la case
+distCases = settings.tailleCase + settings.grillePadding  # Distance entre chaque case (au pt en bas a gauche)
+xGrille = distCases * settings.grilleColonnes / -2  # Position x a laquelle demarre la grille
+yGrille = distCases * settings.grilleLignes / -2  # Position y a laquelle demarre la grille
 
 
 def dessineCase(x, y, l, n, t, c="blue"):
@@ -27,21 +30,20 @@ def positionCase(i):
     """Calcule la position des cases"""
     y = int(i / settings.grilleColonnes)
     x = i - y * settings.grilleColonnes
-    dist = settings.tailleCase + settings.grillePadding
-    return (x * dist, y * dist)
+    return (x * distCases + xGrille, y * distCases + yGrille)
 
 
 def obtenirCase(cases, x, y):
     """Calcule l'index de la case presente aux coordonnees en parametre"""
-    dist = settings.tailleCase + settings.grillePadding
-    i = (x / dist) + (y / dist) * settings.grilleColonnes - 1
+
+    i = ((x - xGrille) / distCases) + ((y - yGrille) / distCases) * settings.grilleColonnes - 1
 
     if i < 0:
         return -1
     elif i >= len(cases):
         return -1
     else:
-        return int(i) # TODO, detecter si clic entre les cases
+        return int(i)  # TODO, detecter si clic entre les cases
 
 
 def afficheContenu(tc, cases, choix=[]):
