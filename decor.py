@@ -3,16 +3,16 @@ Evan Galli et Maxence Lécard
 Ce module contient le code chargé du dessin de l'interface
 """
 
-import formes
 import turtle
+import formes
 
 
 def main(screenX, screenY, t):
     """Le decor dessine avec la tortue t"""
     etoiles(screenX / -2, screenY / -2, t)
     fond(screenX, screenY, t)
-    bonhommeDeNeige(screenX / -2 +  50, screenY / -2 + 100, t)
-    bonhommeDeNeige(screenX /  2 - 150, screenY / -2 + 100, t)
+    bonhommeDeNeige(screenX / -2 + 50, screenY / -2 + 100, t)
+    bonhommeDeNeige(screenX / 2 - 150, screenY / -2 + 100, t)
 
 
 def fond(screenX, screenY, t):
@@ -52,7 +52,7 @@ def baton(x, y, longueur, c, angle, t):
     formes.dessine(x, y, c, t, a=angle)
     t.fillcolor(c)
     t.begin_fill()
-    for i in range(2):
+    for _ in range(2):
         t.forward(longueur)
         t.left(90)
         t.forward(longueur / 10)

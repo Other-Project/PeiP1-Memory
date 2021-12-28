@@ -40,10 +40,9 @@ def obtenirCase(cases, x, y):
 
     if i < 0:
         return -1
-    elif i >= len(cases):
+    if i >= len(cases):
         return -1
-    else:
-        return int(i)  # TODO, detecter si clic entre les cases
+    return int(i)  # TODO, detecter si clic entre les cases
 
 
 def afficheContenu(tc, cases, choix=[]):

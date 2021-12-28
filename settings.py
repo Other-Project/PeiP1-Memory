@@ -12,7 +12,7 @@ tailleCase = 60  # Taille des cases
 grillePadding = 40  # Espacement entre les cases
 
 # Couleurs et formes disponibles
-_couleurs = [
+couleurs = [
     "blue",
     "red",
     "green",
@@ -26,7 +26,7 @@ _couleurs = [
     "brown",
     "magenta",
 ]
-_formes = [
+formes = [
     formes.rond,
     formes.triangle,
     formes.carre,
