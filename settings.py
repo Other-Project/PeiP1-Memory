@@ -6,12 +6,12 @@ Ce fichier contient les parametres de notre jeu de memory
 import formes
 
 # Grille
-grilleColonnes = 4  # Nombre de cases sur x
-grilleLignes = 3  # Nombre de cases sur y
+grilleColonnes = 6  # Nombre de cases sur x
+grilleLignes = 5  # Nombre de cases sur y
 tailleCase = 60  # Taille des cases
 grillePadding = 40  # Espacement entre les cases
 grilleCentreX = 0  # Position en x du centre de la grille
-grilleCentreY = 100  # Position en y du centre de la grille
+grilleCentreY = 150  # Position en y du centre de la grille
 
 # Couleurs et formes disponibles
 couleurs = [
