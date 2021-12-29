@@ -3,9 +3,12 @@ Evan Galli et Maxence Lecard
 Ce fichier contient le code principal de notre jeu de memory
 """
 
+# Les librairies tierces
 import turtle
 import time
 import random
+
+# Nos modules
 import decor
 import cartes
 import settings
@@ -41,19 +44,23 @@ random.shuffle(cases)  # On melange les cartes
 choix1 = -1
 sleeping = False
 def clickCases(x, y):
+    """Fonction appelee lorsque l'utilisateur clique
+    Elle detecte si le clic s'est produit sur une case, revelle son contenu
+    Elle est aussi en charge de la verification du couple"""
     # pylint: disable=global-statement
     global choix1, sleeping
 
+    # Un couple a ete selectionne, on attend que les cartes soient de nouveau
+    # retournee avant d'accepter d'autres commandes
     if sleeping:
         return
-    choix = cartes.obtenirCase(x, y)
-    print(str(x) + " ; " + str(y) + " --> " + str(choix))
 
+    choix = cartes.obtenirCase(x, y)
+    if choix in (choix1, -1) or cases[choix][2]: # Clic hors des cases ou cases deja retournees
+        return
     if choix1 == -1:
         cartes.afficheContenu(tc, cases, [choix])
         choix1 = choix
-        return
-    if choix in (choix1, - 1):
         return
 
     cartes.afficheContenu(tc, cases, [choix1, choix])
@@ -73,6 +80,7 @@ def clickCases(x, y):
         turtle.bye()  # On ferme le jeu
     else:
         choix1 = -1  # Sinon, on se prepare a recevoir un prochain couple
+
 
 # Boucle de jeu
 cartes.afficheContenu(tc, cases)
