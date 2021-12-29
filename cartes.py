@@ -20,10 +20,8 @@ def dessineCase(x, y, l, n, t, c="blue"):
     t.up()
     t.goto(x + l / 2 - 10, y + l / 2 - 10)
     t.down()
-    c = t.color()
     t.color("white")
     t.write(str(n), font=("Arial", 14, "normal"))
-    t.color(c[0])
 
 
 def positionCase(i):
@@ -36,16 +34,14 @@ def positionCase(i):
 def obtenirCase(cases, x, y):
     """Calcule l'index de la case presente aux coordonnees en parametre"""
 
-    i = ((x - xGrille) / distCases) + ((y - yGrille) / distCases) * settings.grilleColonnes - 1
-
-    if i < 0:
-        return -1
-    if i >= len(cases):
-        return -1
-    return int(i)  # TODO, detecter si clic entre les cases
+    for i in range(len(cases)):
+        posCase = positionCase(i)
+        if (x >= posCase[0] and x <= posCase[0] + settings.tailleCase) and (y >= posCase[1] and y <= posCase[1] + settings.tailleCase):
+            return i
+    return -1
 
 
-def afficheContenu(tc, cases, choix=[]):
+def afficheContenu(tc, cases, choix=None):
     """Redessine l'entierete de la grille des cases
     en revelant le contenu des cases comprises dans choix
     (ainsi que des cases deja retournees)"""
@@ -54,7 +50,7 @@ def afficheContenu(tc, cases, choix=[]):
     for i in range(len(cases)):
         case = cases[i]
         x, y = positionCase(i)
-        if case[2] or i in choix:
+        if case[2] or (not choix is None and i in choix):
             formes.carre(x, y, settings.tailleCase, "blue", tc, False)
             case[1](
                 x + marginContenu,  # X

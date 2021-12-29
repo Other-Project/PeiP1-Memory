@@ -12,6 +12,7 @@ import settings
 
 
 screen = turtle.Screen()
+# pylint: disable=protected-access
 screen.cv._rootwindow.resizable(False, False)  # On desactive le redimensionnement
 screenX = screen.window_width()
 screenY = screen.window_height()
@@ -38,11 +39,15 @@ random.shuffle(cases)  # On melange les cartes
 
 
 choix1 = -1
+sleeping = False
 def clickCases(x, y):
-    global choix1
+    # pylint: disable=global-statement
+    global choix1, sleeping
 
+    if sleeping:
+        return
     choix = cartes.obtenirCase(cases, x, y)
-    print(str(x) + " ; " + str(y) + " --> " + str(choix)) # TODO: Fix le calcul de la case
+    print(str(x) + " ; " + str(y) + " --> " + str(choix))
 
     if choix1 == -1:
         cartes.afficheContenu(tc, cases, [choix])
@@ -55,8 +60,10 @@ def clickCases(x, y):
             # Si les formes et les couleurs sont les memes, on garde les cases retournees
             cases[choix1][2] = cases[choix][2] = True
         else:
-            time.sleep(1)  # On attend 1s
+            sleeping = True
+            time.sleep(1)  # On attend une seconde
             cartes.afficheContenu(tc, cases)
+            sleeping = False
 
         # S'il n'y a pas de case qui n'est pas retournee (cad toute les cases sont retourne)
         if not any(not case[2] for case in cases):
