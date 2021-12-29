@@ -31,10 +31,10 @@ def positionCase(i):
     return (x * distCases + xGrille, y * distCases + yGrille)
 
 
-def obtenirCase(cases, x, y):
+def obtenirCase(x, y):
     """Calcule l'index de la case presente aux coordonnees en parametre"""
 
-    for i in range(len(cases)):
+    for i in range(settings.grilleLignes * settings.grilleColonnes):
         posCase = positionCase(i)
         if (x >= posCase[0] and x <= posCase[0] + settings.tailleCase) and (y >= posCase[1] and y <= posCase[1] + settings.tailleCase):
             return i

@@ -46,30 +46,33 @@ def clickCases(x, y):
 
     if sleeping:
         return
-    choix = cartes.obtenirCase(cases, x, y)
+    choix = cartes.obtenirCase(x, y)
     print(str(x) + " ; " + str(y) + " --> " + str(choix))
 
     if choix1 == -1:
         cartes.afficheContenu(tc, cases, [choix])
         choix1 = choix
-    elif choix1 != choix and choix != - 1:
-        cartes.afficheContenu(tc, cases, [choix1, choix])
-        turtle.update()  # On force l'actualisation de l'affichage
+        return
+    if choix in (choix1, - 1):
+        return
 
-        if cases[choix1][0] == cases[choix][0] and cases[choix1][1] == cases[choix][1]:
-            # Si les formes et les couleurs sont les memes, on garde les cases retournees
-            cases[choix1][2] = cases[choix][2] = True
-        else:
-            sleeping = True
-            time.sleep(1)  # On attend une seconde
-            cartes.afficheContenu(tc, cases)
-            sleeping = False
+    cartes.afficheContenu(tc, cases, [choix1, choix])
+    turtle.update()  # On force l'actualisation de l'affichage
 
-        # S'il n'y a pas de case qui n'est pas retournee (cad toute les cases sont retourne)
-        if not any(not case[2] for case in cases):
-            turtle.bye()  # On ferme le jeu
-        else:
-            choix1 = -1  # Sinon, on se prepare a recevoir un prochain couple
+    if cases[choix1][0] == cases[choix][0] and cases[choix1][1] == cases[choix][1]:
+        # Si les formes et les couleurs sont les memes, on garde les cases retournees
+        cases[choix1][2] = cases[choix][2] = True
+    else:
+        sleeping = True
+        time.sleep(1)  # On attend une seconde
+        cartes.afficheContenu(tc, cases)
+        sleeping = False
+
+    # S'il n'y a pas de case qui n'est pas retournee (cad toute les cases sont retourne)
+    if not any(not case[2] for case in cases):
+        turtle.bye()  # On ferme le jeu
+    else:
+        choix1 = -1  # Sinon, on se prepare a recevoir un prochain couple
 
 # Boucle de jeu
 cartes.afficheContenu(tc, cases)
