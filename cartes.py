@@ -9,8 +9,8 @@ import formes
 tailleContenu = settings.tailleCase / 2  # Le contenu est deux fois plus petit que la case
 marginContenu = (settings.tailleCase - tailleContenu) / 2  # Decalage (en x et y) du contenu par rapport a la case
 distCases = settings.tailleCase + settings.grillePadding  # Distance entre chaque case (au pt en bas a gauche)
-xGrille = distCases * settings.grilleColonnes / -2  # Position x a laquelle demarre la grille
-yGrille = distCases * settings.grilleLignes / -2  # Position y a laquelle demarre la grille
+xGrille = distCases * settings.grilleColonnes / -2 + settings.grilleCentreX  # Position x a laquelle demarre la grille
+yGrille = distCases * settings.grilleLignes / -2 + settings.grilleCentreY  # Position y a laquelle demarre la grille
 
 
 def dessineCase(x, y, l, n, t, c="blue"):
@@ -50,7 +50,7 @@ def afficheContenu(tc, cases, choix=None):
     for i in range(len(cases)):
         case = cases[i]
         x, y = positionCase(i)
-        if case[2] or (not choix is None and i in choix):
+        if case[2] or (choix is not None and i in choix):
             formes.carre(x, y, settings.tailleCase, "blue", tc, False)
             case[1](
                 x + marginContenu,  # X
