@@ -38,7 +38,7 @@ def calculeLongueurCote(tailleMax, nbCotes):
     return min(tailleMax, cote)
 
 
-def polygone(x, y, taille, couleur, t, nbCotes, resetHeading=True, fill=True):
+def polygone(x, y, taille, couleur, t, nbCotes, resetHeading=True, fill=True, fillColor=None):
     """Dessine aux coordonnees (x,y) et avec la tortue t, un polygone regulier a nbCotes, de taille et de couleur definies"""
     dist = calculeLongueurCote(taille, nbCotes)
     marginX = (taille - dist) / 2
@@ -46,6 +46,7 @@ def polygone(x, y, taille, couleur, t, nbCotes, resetHeading=True, fill=True):
     dessine(x + marginX, y, couleur, t, resetHeading)
     angle = 360 / nbCotes
     if fill:
+        t.fillcolor(fillColor or couleur)
         t.begin_fill()
     for _ in range(nbCotes):
         t.forward(dist)
@@ -62,9 +63,9 @@ def triangle(x, y, taille, c, t, fill=True):
     polygone(x, y, taille, c, t, 3, fill=fill)
 
 
-def carre(x, y, longueur, c, t, fill=True):
+def carre(x, y, longueur, c, t, fill=True, fillColor=None):
     """Dessine un carre"""
-    polygone(x, y, longueur, c, t, 4, fill=fill)
+    polygone(x, y, longueur, c, t, 4, fill=fill, fillColor=fillColor)
 
 
 def pentagone(x, y, longueur, c, t, fill=True):

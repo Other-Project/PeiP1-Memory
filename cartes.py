@@ -51,7 +51,7 @@ def afficheContenu(tc, cases, choix=None):
         case = cases[i]
         x, y = positionCase(i)
         if case[2] or (choix is not None and i in choix):
-            formes.carre(x, y, settings.tailleCase, "blue", tc, False)
+            formes.carre(x, y, settings.tailleCase, "blue", tc, fillColor="#BBF")
             case[1](
                 x + marginContenu,  # X
                 y + marginContenu,  # Y
