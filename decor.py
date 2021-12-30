@@ -50,10 +50,6 @@ def main(screenX: int, screenY: int, t: turtle.Turtle):
     etoiles(coordonneesEtoiles, turtle.Turtle(visible=False))
 
 
-def away_from_zero(x):
-    return int(math.ceil(x)) if x > 0 else int(math.floor(x))
-
-
 def generateEtoiles(left, bottom, width, height, gap, n):
     """Generes une liste de n tuples (x,y,s)
     dont les coordonnees sont comprise dans le rect
