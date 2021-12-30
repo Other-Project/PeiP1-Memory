@@ -4,36 +4,92 @@ Ce module contient le code chargé du dessin de l'interface
 """
 
 import turtle
+import random
+import math
+import itertools
+
 import formes
+import cartes
 
 
-def main(screenX, screenY, t):
+def main(screenX: int, screenY: int, t: turtle.Turtle):
     """Le decor dessine avec la tortue t"""
-    etoiles(screenX / -2, screenY / -2, t)
-    fond(screenX, screenY, t)
-    bonhommeDeNeige(screenX / -2 + 50, screenY / -2 + 100, t)
-    bonhommeDeNeige(screenX / 2 - 150, screenY / -2 + 100, t)
 
+    leftScreen = screenX / -2
+    rightScreen = -leftScreen
+    bottomScreen = screenY / -2
 
-def fond(screenX, screenY, t):
+    solHauteur = 250
+    sol(leftScreen, bottomScreen, 1000, solHauteur, t)
+
     turtle.bgcolor("midnightblue")
-    sol(screenX / -2, screenY / -2, 1000, 250, t)
+
+    etoilesLeftY = bonhommeDeNeige(leftScreen + 50, bottomScreen + 100, t)
+    etoilesRightY = bonhommeDeNeige(rightScreen - 150, bottomScreen + 100, t)
+
+    tailleEtoiles = 25
+    gapEtoiles = tailleEtoiles * 2
+    coordonneesEtoiles = generateEtoiles(
+        # Etoiles a gauche
+        leftScreen,  # X
+        etoilesLeftY,  # Y
+        abs(leftScreen - cartes.xGrille) - tailleEtoiles,  # W
+        screenY - abs(etoilesLeftY) - tailleEtoiles,  # H
+        gapEtoiles,
+        random.randint(10, 20),
+    )
+    coordonneesEtoiles += generateEtoiles(
+        # Etoiles a droite
+        cartes.xGrille + cartes.longueurGrille,
+        etoilesRightY,
+        abs(rightScreen + cartes.xGrille) - tailleEtoiles,
+        screenY - abs(etoilesRightY) - tailleEtoiles,
+        gapEtoiles,
+        random.randint(10, 20),
+    )
+    etoiles(coordonneesEtoiles, turtle.Turtle(visible=False))
 
 
-def etoiles(xStart, yStart, t):
-    # TODO: Etoiles qui sintillent
-    taille = 25
-    gap = taille * 2
-    for y in range(30):
-        padding = 0
-        if y % 2 == 0:
-            padding = gap / 2
-        for x in range(30):
-            formes.etoile(padding + x * gap + xStart, y * gap + yStart, taille, "gold", t)
+def away_from_zero(x):
+    return int(math.ceil(x)) if x > 0 else int(math.floor(x))
 
 
-def sol(x, y, lX, lY, t):
-    formes.dessine(x, y, "#EFEDED", t)
+def generateEtoiles(left, bottom, width, height, gap, n):
+    """Generes une liste de n tuples (x,y,s)
+    dont les coordonnees sont comprise dans le rect
+    tout en respectant un espacement minimum"""
+
+    # On divise toutes les valeurs par le gap
+    # Afin de s'assurer que les etoiles ne se touchent pas
+    leftWG = math.ceil(left / gap)
+    rightWG = math.floor((left + width) / gap)
+    bottomWG = math.ceil(bottom / gap)
+    topWG = math.floor((bottom + height) / gap)
+
+    # On calcul l'ensemble des coordonnees possibles
+    coordonnees = list(itertools.product(range(leftWG, rightWG + 1), range(bottomWG, topWG + 1)))
+
+    # On selection n couples parmis les coordonnees possibles,
+    # on re-multiplie les coordonnees precedemment divisee par le gap
+    # et on genere une taille aleatoire
+    return [(coor[0] * gap, coor[1] * gap, random.randint(10, 25)) for coor in random.sample(coordonnees, n)]
+
+
+def etoiles(infos, t):
+    """Dessine les etoiles de coordonnees et tailles definies"""
+    t.clear()
+    for info in infos:
+        r = 255
+        g = random.randint(200, 230)
+        b = 0
+        formes.etoile(info[0], info[1], info[2], (r, g, b), t)
+
+    # On actualise l'affichage toute les demie-secondes
+    turtle.ontimer(lambda: etoiles(infos, t), t=500)
+
+
+def sol(x, y, lX, lY, t, c="#EFEDED"):
+    formes.dessine(x, y, c, t)
     t.begin_fill()
     for _ in range(2):
         t.forward(lX)
@@ -105,3 +161,5 @@ def bonhommeDeNeige(x, y, t):
     yButton = y + 25
     for i in range(3):
         formes.rond(x + diametre / 2 - rayonBouton, yButton + i * 25, rayonBouton * 2, "black", t, fill=True)
+
+    return y3+diametre3

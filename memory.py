@@ -16,6 +16,7 @@ import settings
 
 
 screen = turtle.Screen()
+screen.colormode(255)
 # pylint: disable=protected-access
 screen.cv._rootwindow.resizable(False, False)  # On desactive le redimensionnement
 screenX = screen.window_width()

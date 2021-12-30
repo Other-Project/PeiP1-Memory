@@ -9,8 +9,10 @@ import formes
 tailleContenu = settings.tailleCase / 2  # Le contenu est deux fois plus petit que la case
 marginContenu = (settings.tailleCase - tailleContenu) / 2  # Decalage (en x et y) du contenu par rapport a la case
 distCases = settings.tailleCase + settings.grillePadding  # Distance entre chaque case (au pt en bas a gauche)
-xGrille = distCases * settings.grilleColonnes / -2 + settings.grilleCentreX  # Position x a laquelle demarre la grille
-yGrille = distCases * settings.grilleLignes / -2 + settings.grilleCentreY  # Position y a laquelle demarre la grille
+longueurGrille = distCases * settings.grilleColonnes
+hauteurGrille = distCases * settings.grilleLignes
+xGrille = longueurGrille / -2 + settings.grilleCentreX  # Position x a laquelle demarre la grille
+yGrille = hauteurGrille / -2 + settings.grilleCentreY  # Position y a laquelle demarre la grille
 
 
 def dessineCase(x, y, l, n, t, c="blue"):
