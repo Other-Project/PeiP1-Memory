@@ -58,7 +58,7 @@ random.shuffle(cases)  # On melange les cartes
 ##############################################
 
 tentatives = 0
-tentativesMax = nombreDeCouples * settings.tentativesMax
+tentativesMax = settings.tentativesMax(nombreDeCouples)
 
 choix1 = -1
 sleeping = False # Desactive les actions du joueur
