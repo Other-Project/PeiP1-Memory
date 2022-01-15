@@ -16,7 +16,7 @@ import settings
 
 
 screen = turtle.Screen()
-screen.colormode(255)
+screen.colormode(255) # On represente les couleurs par un nombre entier de 0 à 255
 # pylint: disable=protected-access
 screen.cv._rootwindow.resizable(False, False)  # On desactive le redimensionnement
 screenX = screen.window_width()
@@ -25,6 +25,7 @@ screenY = screen.window_height()
 turtle.tracer(0)  # le dessin est instantané (on ne voit pas le deplacement de la tortue)
 td = turtle.Turtle(visible=False)  # tortue du decor
 tc = turtle.Turtle(visible=False)  # tortue des cases
+tp = turtle.Turtle(visible=False)  # tortue de la progression
 
 decor.main(screenX, screenY, td)  # on dessine le decor
 
@@ -55,6 +56,9 @@ random.shuffle(cases)  # On melange les cartes
 #                     Jeu                    #
 ##############################################
 
+tentatives = 0
+tentativesMax = settings.grilleColonnes * settings.grilleLignes # 2x le nb de couples
+
 choix1 = -1
 sleeping = False
 def clickCases(x, y):
@@ -62,7 +66,7 @@ def clickCases(x, y):
     Elle detecte si le clic s'est produit sur une case, revelle son contenu
     Elle est aussi en charge de la verification du couple"""
     # pylint: disable=global-statement
-    global choix1, sleeping
+    global tentatives, choix1, sleeping
 
     # Un couple a ete selectionne, on attend que le contenu soit de nouveau
     # cache avant d'accepter d'autres commandes
@@ -80,10 +84,14 @@ def clickCases(x, y):
     cartes.afficheContenu(tc, cases, [choix1, choix])
     turtle.update()  # On force l'actualisation de l'affichage
 
+    print(tentatives)
+    cartes.barreProgression(tentatives, tentativesMax, tp, yOffset=screenY / -2 + 100)
+        
     if cases[choix1][0] == cases[choix][0] and cases[choix1][1] == cases[choix][1]:
         # Si les formes et les couleurs sont les memes, on garde les cases retournees
         cases[choix1][2] = cases[choix][2] = True
     else:
+        tentatives += 1
         sleeping = True
         time.sleep(1)  # On attend une seconde
         cartes.afficheContenu(tc, cases)
@@ -97,6 +105,7 @@ def clickCases(x, y):
 
 
 # Boucle de jeu
+cartes.barreProgression(tentatives, tentativesMax, tp, yOffset=screenY / -2 + 100)
 cartes.afficheContenu(tc, cases)
 turtle.onscreenclick(clickCases)
 turtle.mainloop()

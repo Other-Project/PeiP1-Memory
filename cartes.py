@@ -6,6 +6,7 @@ Ce fichier contient les fonctions dédiées au fonctionnement des cases
 import settings
 import formes
 
+nombreCases = settings.grilleLignes * settings.grilleColonnes
 tailleContenu = settings.tailleCase / 2  # Le contenu est deux fois plus petit que la case
 marginContenu = (settings.tailleCase - tailleContenu) / 2  # Decalage (en x et y) du contenu par rapport a la case
 distCases = settings.tailleCase + settings.grillePadding  # Distance entre chaque case (au pt en bas a gauche)
@@ -14,16 +15,6 @@ hauteurGrille = distCases * settings.grilleLignes
 xGrille = longueurGrille / -2 + settings.grilleCentreX  # Position x a laquelle demarre la grille
 yGrille = hauteurGrille / -2 + settings.grilleCentreY  # Position y a laquelle demarre la grille
 
-
-def dessineCase(x, y, l, n, t, c="blue"):
-    """Dessine une case avec un nombre dessus"""
-    formes.carre(x, y, l, c, t)
-    # on se place pour ecrire le chiffre n
-    t.up()
-    t.goto(x + l / 2 - 10, y + l / 2 - 10)
-    t.down()
-    t.color("white")
-    t.write(str(n), font=("Arial", 14, "normal"))
 
 
 def positionCase(i):
@@ -36,13 +27,20 @@ def positionCase(i):
 def obtenirCase(x, y):
     """Calcule l'index de la case presente aux coordonnees en parametre"""
 
-    for i in range(settings.grilleLignes * settings.grilleColonnes):
+    for i in range(nombreCases):
         posCase = positionCase(i)
-        if (x >= posCase[0] and x <= posCase[0] + settings.tailleCase) and (y >= posCase[1] and y <= posCase[1] + settings.tailleCase):
+        if (posCase[0] <= x <= posCase[0] + settings.tailleCase) and (posCase[1] <= y <= posCase[1] + settings.tailleCase):
             return i
     return -1
 
 
+def dessineCase(x, y, l, n, t, c="blue"):
+    """Dessine une case avec un nombre dessus"""
+    formes.carre(x, y, l, c, t)
+    # Ecrit le chiffre n
+    formes.texte(x + l / 2 - 10, y + l / 2 - 10, str(n), t)
+
+    
 def afficheContenu(tc, cases, choix=None):
     """Redessine l'entierete de la grille des cases
     en revelant le contenu des cases comprises dans choix
@@ -63,3 +61,11 @@ def afficheContenu(tc, cases, choix=None):
             )
         else:
             dessineCase(x, y, settings.tailleCase, i + 1, tc)
+
+def barreProgression(tentatives, tentativesMax, t, xOffset = 0, yOffset = 100, tailleX = 150, tailleY = 10):
+    """dessine une barre de progression"""
+    x = tailleX / -2 + xOffset
+    y = tailleY / -2 + yOffset
+    t.clear()
+    formes.rectangle(x,y,tailleX, tailleY, "gray", t)
+    formes.rectangle(x+1,y+1,tentatives/tentativesMax * (tailleX-2), tailleY-2, "blue", t)

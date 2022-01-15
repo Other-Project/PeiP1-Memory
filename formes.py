@@ -21,6 +21,9 @@ def point(x, y, t, w=5, c="blue"):
     dessine(x, y, c, t, w=w)
     t.forward(1)
 
+def texte(x, y, texte, t, w=14, c="white"):
+    dessine(x, y, c, t)
+    t.write(texte, font=("Arial", w, "normal"))
 
 def calculeLongueurCote(tailleMax, nbCotes):
     """Calcule la longueur des cotes d'un polynome régulier en
