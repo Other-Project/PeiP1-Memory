@@ -21,9 +21,11 @@ def point(x, y, t, w=5, c="blue"):
     dessine(x, y, c, t, w=w)
     t.forward(1)
 
-def texte(x, y, texte, t, w=14, c="white"):
-    dessine(x, y, c, t)
-    t.write(texte, font=("Arial", w, "normal"))
+def texte(x, y, texte, t, fontSize=14, c="white"):
+    """Ecrit du texte centré en x,y"""
+    width=fontSize/1.5 # Monaco utilise un rapport h/l de ~1.5
+    dessine(x - width//2*len(texte), y-fontSize, c, t)
+    t.write(texte, font=("Monaco", fontSize, "normal"))
 
 def calculeLongueurCote(tailleMax, nbCotes):
     """Calcule la longueur des cotes d'un polynome régulier en

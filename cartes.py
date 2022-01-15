@@ -38,7 +38,7 @@ def dessineCase(x, y, l, n, t, c="blue"):
     """Dessine une case avec un nombre dessus"""
     formes.carre(x, y, l, c, t)
     # Ecrit le chiffre n
-    formes.texte(x + l / 2 - 10, y + l / 2 - 10, str(n), t)
+    formes.texte(x + l / 2, y + l / 2, str(n), t)
 
     
 def afficheContenu(tc, cases, choix=None):

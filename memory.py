@@ -13,6 +13,7 @@ import itertools
 import decor
 import cartes
 import settings
+import formes
 
 
 screen = turtle.Screen()
@@ -57,7 +58,7 @@ random.shuffle(cases)  # On melange les cartes
 ##############################################
 
 tentatives = 0
-tentativesMax = settings.grilleColonnes * settings.grilleLignes # 2x le nb de couples
+tentativesMax = len(cases) # 2x le nb de couples
 
 choix1 = -1
 sleeping = False
@@ -84,7 +85,7 @@ def clickCases(x, y):
     cartes.afficheContenu(tc, cases, [choix1, choix])
     turtle.update()  # On force l'actualisation de l'affichage
 
-    print(tentatives)
+    print(tentatives,"/",tentativesMax)
     cartes.barreProgression(tentatives, tentativesMax, tp, yOffset=screenY / -2 + 100)
         
     if cases[choix1][0] == cases[choix][0] and cases[choix1][1] == cases[choix][1]:
@@ -98,11 +99,20 @@ def clickCases(x, y):
         sleeping = False
 
     # S'il n'y a pas de case qui n'est pas retournee (cad toutes les cases sont retournees)
-    if not any(not case[2] for case in cases):
-        turtle.bye()  # On ferme le jeu
-    else:
+    if not any(not case[2] for case in cases): # Gagné !
+        ecranDeFin("Gagné !")
+    elif tentatives > tentativesMax: # Perdu !
+        ecranDeFin("Perdu !")
+    else: # Le jeu continue
         choix1 = -1  # Sinon, on se prepare a recevoir un prochain couple
 
+def ecranDeFin(texte):
+        # On efface tout
+        tc.clear()
+        tp.clear()
+
+        formes.texte(settings.grilleCentreX,settings.grilleCentreY, texte, tc, fontSize=24)
+        turtle.onscreenclick(lambda x,y: turtle.bye())  # On ferme le jeu si l'utilisateur clique
 
 # Boucle de jeu
 cartes.barreProgression(tentatives, tentativesMax, tp, yOffset=screenY / -2 + 100)
