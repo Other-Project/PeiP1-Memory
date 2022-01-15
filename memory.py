@@ -1,5 +1,5 @@
 """
-Evan Galli et Maxence Lecard
+Evan Galli et Maxence Lécard
 Ce fichier contient le code principal de notre jeu de memory
 """
 
@@ -37,10 +37,10 @@ decor.main(screenX, screenY, td)  # on dessine le decor
 # Genere en priorité des couples de couleur et de forme unique
 # puis utilise des formes/couleurs deja sorties pour les couples restant
 
-nombreDeCases = settings.grilleLignes * settings.grilleColonnes  # Nb de cases a generer
+nombreDeCouples = settings.grilleLignes * settings.grilleColonnes // 2 # Nb de couples a generer
 # On genere une liste de l'ensemble des couples forme/couleur
 couples = [list(case) for case in itertools.product(settings.couleurs, settings.formes, [False])]
-nombreDeCouplesTotalementUniques = min(len(settings.couleurs), len(settings.formes), nombreDeCases // 2)
+nombreDeCouplesTotalementUniques = min(len(settings.couleurs), len(settings.formes), nombreDeCouples)
 # On genere une liste avec le maximum de couple dont la couleur et la forme n'ont pas ete choisie
 cases = [
     couples[i * len(settings.couleurs) + random.randint(0, nombreDeCouplesTotalementUniques)]
@@ -48,7 +48,7 @@ cases = [
 ]
 couples = [case for case in couples if case not in cases]  # On ne garde que les couples forme/couleur non tires
 # On selectionne le restant des couples forme/couleur
-cases += random.choices(couples, k=(nombreDeCases // 2) - len(cases))
+cases += random.choices(couples, k=nombreDeCouples - len(cases))
 cases *= 2  # On dupplique la selection afin d'obtenir des couples de cartes
 random.shuffle(cases)  # On melange les cartes
 
@@ -58,10 +58,10 @@ random.shuffle(cases)  # On melange les cartes
 ##############################################
 
 tentatives = 0
-tentativesMax = len(cases)  # 2x le nb de couples
+tentativesMax = nombreDeCouples * settings.tentativesMax
 
 choix1 = -1
-sleeping = False
+sleeping = False # Desactive les actions du joueur
 def clickCases(x, y):
     """Fonction appelee lorsque l'utilisateur clique
     Elle detecte si le clic s'est produit sur une case, revelle son contenu

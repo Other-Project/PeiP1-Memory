@@ -13,6 +13,8 @@ grillePadding = 40  # Espacement entre les cases
 grilleCentreX = 0  # Position en x du centre de la grille
 grilleCentreY = 150  # Position en y du centre de la grille
 
+tentativesMax = 2 # Rapport entre le nb de tentatives autorisees et le nb de couples
+
 # Couleurs et formes disponibles
 couleurs = [
     "blue",

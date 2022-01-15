@@ -1,6 +1,7 @@
 """
 Evan Galli et Maxence Lécard
-Ce module contient le code chargé du dessin de l'interface
+Ce module contient le code chargé du dessin du decor
+Theme: Hiver
 """
 
 import turtle
