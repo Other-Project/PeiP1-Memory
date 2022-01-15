@@ -72,7 +72,7 @@ def generateEtoiles(left, bottom, width, height, gap, n):
     # On selection n couples parmis les coordonnees possibles,
     # on re-multiplie les coordonnees precedemment divisee par le gap
     # et on genere une taille aleatoire
-    return [(coor[0] * gap, coor[1] * gap, random.randint(10, 25)) for coor in random.sample(coordonnees, n)]
+    return [(coor[0] * gap, coor[1] * gap, random.randint(10, 25)) for coor in random.sample(coordonnees, min(n, len(coordonnees)))]
 
 
 def etoiles(infos, t):

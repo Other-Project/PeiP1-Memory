@@ -48,7 +48,7 @@ cases = [
 ]
 couples = [case for case in couples if case not in cases]  # On ne garde que les couples forme/couleur non tires
 # On selectionne le restant des couples forme/couleur
-cases += random.choices(couples, k=nombreDeCouples - len(cases))
+cases += random.sample(couples, k=min(nombreDeCouples - len(cases), len(couples)))
 cases *= 2  # On dupplique la selection afin d'obtenir des couples de cartes
 random.shuffle(cases)  # On melange les cartes
 
