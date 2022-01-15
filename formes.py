@@ -4,7 +4,6 @@ Ce module contient toutes fonctions de dessin des formes élémentaires
 """
 
 import math
-import turtle
 
 
 def dessine(x, y, couleur, t, a=0, w=5):

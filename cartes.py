@@ -63,9 +63,10 @@ def afficheContenu(tc, cases, choix=None):
 
 def barreProgression(tentatives, tentativesMax, t, xOffset=0, yOffset=100, tailleX=150, tailleY=10):
     """dessine une barre de progression"""
-    t.clear() # On efface la barre precedente
+    t.clear()  # On efface la barre precedente
     x = tailleX / -2 + xOffset
     y = tailleY / -2 + yOffset
-    formes.rectangle(x, y, tailleX, tailleY, "gray", t) # Fond
-    formes.rectangle(x + 1, y + 1, tentatives / tentativesMax * (tailleX - 2), tailleY - 2, "blue", t) # Progression
-    formes.texte(xOffset, yOffset, str(tentatives) + " / " + str(tentativesMax), t, fontSize=int(tailleY * 0.75)) # Texte tentatives utilisées / autorisées
+    formes.rectangle(x, y, tailleX, tailleY, "gray", t)  # Fond
+    formes.rectangle(x + 1, y + 1, tentatives / tentativesMax * (tailleX - 2), tailleY - 2, "blue", t)  # Progression
+    formes.texte(xOffset, yOffset, str(tentatives) + " / " + str(tentativesMax), t, fontSize=int(tailleY * 0.75))  # Texte tentatives utilisées / autorisées
+    

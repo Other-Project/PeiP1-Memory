@@ -43,7 +43,7 @@ couples = [list(case) for case in itertools.product(settings.couleurs, settings.
 nombreDeCouplesTotalementUniques = min(len(settings.couleurs), len(settings.formes), nombreDeCouples)
 # On genere une liste avec le maximum de couple dont la couleur et la forme n'ont pas ete choisie
 cases = [
-    couples[i * len(settings.couleurs) + random.randint(0, nombreDeCouplesTotalementUniques)]
+    couples[i * len(settings.formes) + i]
     for i in range(nombreDeCouplesTotalementUniques)
 ]
 couples = [case for case in couples if case not in cases]  # On ne garde que les couples forme/couleur non tires
