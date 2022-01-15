@@ -21,11 +21,13 @@ def point(x, y, t, w=5, c="blue"):
     dessine(x, y, c, t, w=w)
     t.forward(1)
 
+
 def texte(x, y, texte, t, fontSize=14, c="white"):
     """Ecrit du texte centré en x,y"""
-    width=fontSize/1.5 # Monaco utilise un rapport h/l de ~1.5
-    dessine(x - width//2*len(texte), y-fontSize, c, t)
+    width = fontSize / 1.5  # Monaco utilise un rapport h/l de ~1.5
+    dessine(x - width // 2 * len(texte), y - fontSize, c, t)
     t.write(texte, font=("Monaco", fontSize, "normal"))
+
 
 def calculeLongueurCote(tailleMax, nbCotes):
     """Calcule la longueur des cotes d'un polynome régulier en
@@ -63,7 +65,7 @@ def polygone(x, y, taille, couleur, t, nbCotes, resetHeading=True, fill=True, fi
 
 def triangle(x, y, taille, c, t, fill=True):
     """Dessine un triangle"""
-    tailleY = math.sqrt(calculeLongueurCote(taille, 3)**2 - (taille / 2)**2)
+    tailleY = math.sqrt(calculeLongueurCote(taille, 3) ** 2 - (taille / 2) ** 2)
     y += (taille - tailleY) / 2
     polygone(x, y, taille, c, t, 3, fill=fill)
 
@@ -98,6 +100,7 @@ def rond(x, y, diametre, c, t, fill=True):
     if fill:
         t.end_fill()
 
+
 def rectangle(x, y, lX, lY, c, t, resetHeading=True, a=0):
     """Dessine un rectangle"""
     dessine(x, y, c, t, resetHeading=resetHeading, a=a)
@@ -108,6 +111,7 @@ def rectangle(x, y, lX, lY, c, t, resetHeading=True, a=0):
         t.forward(lY)
         t.left(90)
     t.end_fill()
+
 
 # dessine une croix dans le carré de largeur l dont le point en bas
 # à gauche est (x,y), avec la tortue t

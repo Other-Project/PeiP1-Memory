@@ -17,7 +17,7 @@ import formes
 
 
 screen = turtle.Screen()
-screen.colormode(255) # On represente les couleurs par un nombre entier de 0 à 255
+screen.colormode(255)  # On represente les couleurs par un nombre entier de 0 a 255
 # pylint: disable=protected-access
 screen.cv._rootwindow.resizable(False, False)  # On desactive le redimensionnement
 screenX = screen.window_width()
@@ -58,7 +58,7 @@ random.shuffle(cases)  # On melange les cartes
 ##############################################
 
 tentatives = 0
-tentativesMax = len(cases) # 2x le nb de couples
+tentativesMax = len(cases)  # 2x le nb de couples
 
 choix1 = -1
 sleeping = False
@@ -84,7 +84,7 @@ def clickCases(x, y):
 
     cartes.afficheContenu(tc, cases, [choix1, choix])
     turtle.update()  # On force l'actualisation de l'affichage
-        
+
     if cases[choix1][0] == cases[choix][0] and cases[choix1][1] == cases[choix][1]:
         # Si les formes et les couleurs sont les memes, on garde les cases retournees
         cases[choix1][2] = cases[choix][2] = True
@@ -97,20 +97,22 @@ def clickCases(x, y):
     cartes.barreProgression(tentatives, tentativesMax, tp, yOffset=screenY / -2 + 100)
 
     # S'il n'y a pas de case qui n'est pas retournee (cad toutes les cases sont retournees)
-    if not any(not case[2] for case in cases): # Gagné !
+    if not any(not case[2] for case in cases):  # Gagne !
         ecranDeFin("Gagné !")
-    elif tentatives > tentativesMax: # Perdu !
+    elif tentatives > tentativesMax:  # Perdu !
         ecranDeFin("Perdu !")
-    else: # Le jeu continue
+    else:  # Le jeu continue
         choix1 = -1  # Sinon, on se prepare a recevoir un prochain couple
 
-def ecranDeFin(texte):
-        # On efface tout
-        tc.clear()
-        tp.clear()
 
-        formes.texte(settings.grilleCentreX,settings.grilleCentreY, texte, tc, fontSize=24)
-        turtle.onscreenclick(lambda x,y: turtle.bye())  # On ferme le jeu si l'utilisateur clique
+def ecranDeFin(texte):
+    # On efface tout
+    tc.clear()
+    tp.clear()
+
+    formes.texte(settings.grilleCentreX, settings.grilleCentreY, texte, tc, fontSize=24)
+    turtle.onscreenclick(lambda x, y: turtle.bye())  # On ferme le jeu si l'utilisateur clique
+
 
 # Boucle de jeu
 cartes.barreProgression(tentatives, tentativesMax, tp, yOffset=screenY / -2 + 100)

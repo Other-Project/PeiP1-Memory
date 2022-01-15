@@ -25,7 +25,6 @@ def positionCase(i):
 
 def obtenirCase(x, y):
     """Calcule l'index de la case presente aux coordonnees en parametre"""
-
     for i in range(nombreCases):
         posCase = positionCase(i)
         if (posCase[0] <= x <= posCase[0] + settings.tailleCase) and (posCase[1] <= y <= posCase[1] + settings.tailleCase):

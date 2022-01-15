@@ -23,15 +23,15 @@ def main(screenX: int, screenY: int, t: turtle.Turtle):
     solHauteur = 250
     formes.rectangle(leftScreen, bottomScreen, 1000, solHauteur, "#EFEDED", t)
 
-    turtle.bgcolor("midnightblue") # On defini la couleur du fond (ciel)
+    turtle.bgcolor("midnightblue")  # On defini la couleur du fond (ciel)
 
     # On trace les bonhommes de neige
     etoilesLeftY = bonhommeDeNeige(leftScreen + 50, bottomScreen + 100, t)
     etoilesRightY = bonhommeDeNeige(rightScreen - 150, bottomScreen + 100, t)
 
     # Generation et affichage des etoiles
-    tailleEtoiles = 25 # Taille maximale d'une etoile
-    gapEtoiles = tailleEtoiles * 2 # Espacement entre chaque coordonnées d'etoile
+    tailleEtoiles = 25  # Taille maximale d'une etoile
+    gapEtoiles = tailleEtoiles * 2  # Espacement entre chaque coordonnees d'etoile
     coordonneesEtoiles = generateEtoiles(
         # Etoiles a gauche
         leftScreen,  # X
@@ -87,7 +87,6 @@ def etoiles(infos, t):
     turtle.ontimer(lambda: etoiles(infos, t), t=500)
 
 
-
 #####
 # On definit les fonctions dont on va avoir besoin pour tracer le bonhomme de neige
 #####
@@ -117,8 +116,8 @@ def bonhommeDeNeige(x, y, t):
 
     # batons qui forment les bras du bonhomme de neige
     angleBaton = 30
-    formes.rectangle(x2, y2 + diametre2 / 2, 50, 5, "brown", t, a = 180 - angleBaton)
-    formes.rectangle(x2 + diametre2, y2 + diametre2 / 2, 50, 5, "brown", t, a = angleBaton)
+    formes.rectangle(x2, y2 + diametre2 / 2, 50, 5, "brown", t, a=180 - angleBaton)
+    formes.rectangle(x2 + diametre2, y2 + diametre2 / 2, 50, 5, "brown", t, a=angleBaton)
 
     # boules de neiges qui forment le corps du bonhomme
     formes.rond(x, y, diametre, "white", t, fill=True)
@@ -139,4 +138,4 @@ def bonhommeDeNeige(x, y, t):
     for i in range(3):
         formes.rond(x + diametre / 2 - rayonBouton, yButton + i * 25, rayonBouton * 2, "black", t, fill=True)
 
-    return y3+diametre3
+    return y3 + diametre3
