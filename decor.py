@@ -19,16 +19,19 @@ def main(screenX: int, screenY: int, t: turtle.Turtle):
     rightScreen = -leftScreen
     bottomScreen = screenY / -2
 
+    # On trace le sol
     solHauteur = 250
-    sol(leftScreen, bottomScreen, 1000, solHauteur, t)
+    formes.rectangle(leftScreen, bottomScreen, 1000, solHauteur, "#EFEDED", t)
 
-    turtle.bgcolor("midnightblue")
+    turtle.bgcolor("midnightblue") # On defini la couleur du fond (ciel)
 
+    # On trace les bonhommes de neige
     etoilesLeftY = bonhommeDeNeige(leftScreen + 50, bottomScreen + 100, t)
     etoilesRightY = bonhommeDeNeige(rightScreen - 150, bottomScreen + 100, t)
 
-    tailleEtoiles = 25
-    gapEtoiles = tailleEtoiles * 2
+    # Generation et affichage des etoiles
+    tailleEtoiles = 25 # Taille maximale d'une etoile
+    gapEtoiles = tailleEtoiles * 2 # Espacement entre chaque coordonnées d'etoile
     coordonneesEtoiles = generateEtoiles(
         # Etoiles a gauche
         leftScreen,  # X
@@ -84,35 +87,13 @@ def etoiles(infos, t):
     turtle.ontimer(lambda: etoiles(infos, t), t=500)
 
 
-def sol(x, y, lX, lY, t, c="#EFEDED"):
-    formes.dessine(x, y, c, t)
-    t.begin_fill()
-    for _ in range(2):
-        t.forward(lX)
-        t.left(90)
-        t.forward(lY)
-        t.left(90)
-    t.end_fill()
-
 
 #####
 # On definit les fonctions dont on va avoir besoin pour tracer le bonhomme de neige
 #####
 
 
-def baton(x, y, longueur, c, angle, t):
-    formes.dessine(x, y, c, t, a=angle)
-    t.fillcolor(c)
-    t.begin_fill()
-    for _ in range(2):
-        t.forward(longueur)
-        t.left(90)
-        t.forward(longueur / 10)
-        t.left(90)
-    t.end_fill()
-
-
-def carrote(x, y, longueur, c, t):
+def carotte(x, y, longueur, c, t):
     formes.dessine(x, y, c, t)
     t.fillcolor(c)
     t.begin_fill()
@@ -136,16 +117,16 @@ def bonhommeDeNeige(x, y, t):
 
     # batons qui forment les bras du bonhomme de neige
     angleBaton = 30
-    baton(x2, y2 + diametre2 / 2, 50, "brown", 180 - angleBaton, t)
-    baton(x2 + diametre2, y2 + diametre2 / 2, 50, "brown", angleBaton, t)
+    formes.rectangle(x2, y2 + diametre2 / 2, 50, 5, "brown", t, a = 180 - angleBaton)
+    formes.rectangle(x2 + diametre2, y2 + diametre2 / 2, 50, 5, "brown", t, a = angleBaton)
 
     # boules de neiges qui forment le corps du bonhomme
     formes.rond(x, y, diametre, "white", t, fill=True)
     formes.rond(x2, y2, diametre2, "white", t, fill=True)
     formes.rond(x3, y3, diametre3, "white", t, fill=True)
 
-    # carrote du bonhomme de neige
-    carrote(x3 + diametre3 / 2, y3 + diametre3 / 3, 20, "orange", t)
+    # carotte du bonhomme de neige
+    carotte(x3 + diametre3 / 2, y3 + diametre3 / 3, 20, "orange", t)
 
     # yeux sur le corps du bonhomme
     rayonYeux = 3

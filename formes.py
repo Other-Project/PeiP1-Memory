@@ -96,6 +96,16 @@ def rond(x, y, diametre, c, t, fill=True):
     if fill:
         t.end_fill()
 
+def rectangle(x, y, lX, lY, c, t, resetHeading=True, a=0):
+    """Dessine un rectangle"""
+    dessine(x, y, c, t, resetHeading=resetHeading, a=a)
+    t.begin_fill()
+    for _ in range(2):
+        t.forward(lX)
+        t.left(90)
+        t.forward(lY)
+        t.left(90)
+    t.end_fill()
 
 # dessine une croix dans le carré de largeur l dont le point en bas
 # à gauche est (x,y), avec la tortue t
