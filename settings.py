@@ -15,7 +15,7 @@ grilleCentreY = 150  # Position en y du centre de la grille
 
 tentativesMax = 2 # Rapport entre le nb de tentatives autorisees et le nb de couples
 
-# Couleurs et formes disponibles
+# Couleurs disponibles
 couleurs = [
     "blue",
     "red",
@@ -30,9 +30,13 @@ couleurs = [
     "brown",
     "magenta",
 ]
+
+# Formes disponibles
+# Les fonctions doivent imperativement respecter les parametres suivants: 
+# coordonnees x, y en bas a gauche, taille, couleur, tortue
 formes = [
     formes.rond,
-    formes.triangle,
+    formes.triangleEquilateral,
     formes.carre,
     formes.pentagone,
     formes.hexagone,
@@ -40,4 +44,5 @@ formes = [
     formes.croix,
     formes.etoile,
     formes.coeur,
+    formes.sapin
 ]

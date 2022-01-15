@@ -6,12 +6,12 @@ Ce module contient toutes fonctions de dessin des formes élémentaires
 import math
 
 
-def dessine(x, y, couleur, t, resetHeading=True, a=0, w=5):
+def dessine(x, y, couleur, t, a=0, w=5):
     """Fait les préparatifs avant de commencer à dessiner"""
     t.up()
     t.goto(x, y)
     t.down()
-    if resetHeading:
+    if a != None:
         t.setheading(a)  # on oriente la tortue vers la droite
     t.color(couleur)
     t.width(w)
@@ -45,12 +45,12 @@ def calculeLongueurCote(tailleMax, nbCotes):
     return min(tailleMax, cote)
 
 
-def polygone(x, y, taille, couleur, t, nbCotes, resetHeading=True, fill=True, fillColor=None):
+def polygone(x, y, taille, couleur, t, nbCotes, a=0, fill=True, fillColor=None):
     """Dessine aux coordonnees (x,y) et avec la tortue t, un polygone regulier a nbCotes, de taille et de couleur definies"""
     dist = calculeLongueurCote(taille, nbCotes)
     marginX = (taille - dist) / 2
 
-    dessine(x + marginX, y, couleur, t, resetHeading)
+    dessine(x + marginX, y, couleur, t, a=a)
     angle = 360 / nbCotes
     if fill:
         t.fillcolor(fillColor or couleur)
@@ -63,7 +63,7 @@ def polygone(x, y, taille, couleur, t, nbCotes, resetHeading=True, fill=True, fi
     t.width(1)
 
 
-def triangle(x, y, taille, c, t, fill=True):
+def triangleEquilateral(x, y, taille, c, t, fill=True):
     """Dessine un triangle"""
     tailleY = math.sqrt(calculeLongueurCote(taille, 3) ** 2 - (taille / 2) ** 2)
     y += (taille - tailleY) / 2
@@ -100,10 +100,22 @@ def rond(x, y, diametre, c, t, fill=True):
     if fill:
         t.end_fill()
 
+def triangle(x, y, longueur, c, t, a=180/3, aDepart = 0):
+    dessine(x, y, c, t, a=aDepart)
+    t.fillcolor(c)
+    t.begin_fill()
 
-def rectangle(x, y, lX, lY, c, t, resetHeading=True, a=0):
+    t.forward(longueur) # Base
+    t.left(180 - a)
+    t.forward(longueur / (2*math.cos(math.radians(a))))
+    t.left(a *2)
+    t.forward(longueur / (2*math.cos(math.radians(a))))
+
+    t.end_fill()
+
+def rectangle(x, y, lX, lY, c, t, a=0):
     """Dessine un rectangle"""
-    dessine(x, y, c, t, resetHeading=resetHeading, a=a)
+    dessine(x, y, c, t, a=a)
     t.begin_fill()
     for _ in range(2):
         t.forward(lX)
@@ -133,16 +145,15 @@ def etoile(x, y, longueur, c, t):
     x += (longueur - taille) / 2  # On centre les triangles
 
     dessine(x, y, c, t)
-    polygone(x, y + longueur / 3, taille, c, t, 3, False)  # Premier triangle
-    t.right(180)  # On dessine le triangle dans le sens inverse
-    polygone(x + taille, y + 2 * longueur / 3, taille, c, t, 3, False)  # Deuxieme triangle
+    polygone(x, y + longueur / 3, taille, c, t, 3)  # Premier triangle
+    polygone(x + taille, y + 2 * longueur / 3, taille, c, t, 3, a=180)  # Deuxieme triangle
 
 
 def coeur(x, y, taille, c, t):
     """Dessine un coeur"""
     a = 45
     l = 2 / 3 * taille
-    dessine(x + taille / 2 - 2.5, y, c, t, True, a)
+    dessine(x + taille / 2 - 2.5, y, c, t, a=a)
 
     t.begin_fill()
     t.forward(l)
@@ -151,3 +162,16 @@ def coeur(x, y, taille, c, t):
     t.circle(taille / 4, 180 + a)
     t.forward(l)
     t.end_fill()
+
+
+def sapin(x, y, taille, c, t):
+    """Dessine un sapin"""
+    dessine(x, y, c, t)
+
+    baseL = taille/4
+    triangleH = (taille - baseL) / 2
+    traingleA = math.degrees(math.atan(2*triangleH/taille))
+
+    carre(x+(taille-baseL)/2,y,baseL,"brown",t)
+    triangle(x,y+baseL,taille,c,t, a=traingleA)
+    triangle(x,y+baseL+triangleH,taille,c,t, a=traingleA)

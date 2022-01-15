@@ -39,8 +39,8 @@ def main(screenX: int, screenY: int, t: turtle.Turtle):
         etoilesLeftY,  # Y
         abs(leftScreen - cartes.xGrille) - tailleEtoiles,  # W
         screenY - abs(etoilesLeftY) - tailleEtoiles,  # H
-        gapEtoiles,
-        random.randint(10, 20),
+        gapEtoiles, # Espacement
+        random.randint(10, 20), # Nb
     )
     coordonneesEtoiles += generateEtoiles(
         # Etoiles a droite
@@ -88,24 +88,6 @@ def etoiles(infos, t):
     turtle.ontimer(lambda: etoiles(infos, t), t=500)
 
 
-#####
-# On definit les fonctions dont on va avoir besoin pour tracer le bonhomme de neige
-#####
-
-
-def carotte(x, y, longueur, c, t):
-    formes.dessine(x, y, c, t)
-    t.fillcolor(c)
-    t.begin_fill()
-    t.left(10)
-    t.forward(longueur)
-    t.left(180 - 10)
-    t.forward(longueur)
-    t.left(90)
-    t.forward(longueur / 5)
-    t.end_fill()
-
-
 def bonhommeDeNeige(x, y, t):
     diametre = 100  # Diametre de la premiere boule de neige
     diametre2 = diametre * 0.75  # Diametre de la 2e
@@ -126,7 +108,8 @@ def bonhommeDeNeige(x, y, t):
     formes.rond(x3, y3, diametre3, "white", t, fill=True)
 
     # carotte du bonhomme de neige
-    carotte(x3 + diametre3 / 2, y3 + diametre3 / 3, 20, "orange", t)
+    hCarotte = 5
+    formes.triangle(x3 + diametre3 / 2, y3 + diametre3 / 3 + hCarotte, hCarotte, "orange", t, a=80, aDepart=270)
 
     # yeux sur le corps du bonhomme
     rayonYeux = 3
