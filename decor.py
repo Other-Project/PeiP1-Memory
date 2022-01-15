@@ -89,6 +89,7 @@ def etoiles(infos, t):
 
 
 def bonhommeDeNeige(x, y, t):
+    """Dessine un bonhomme de neige"""
     diametre = 100  # Diametre de la premiere boule de neige
     diametre2 = diametre * 0.75  # Diametre de la 2e
     diametre3 = diametre * 0.50  # Diametre de la 3e
