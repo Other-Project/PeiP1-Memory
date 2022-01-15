@@ -54,7 +54,7 @@ def main(screenX: int, screenY: int, t: turtle.Turtle):
     etoiles(coordonneesEtoiles, turtle.Turtle(visible=False))
 
 
-def generateEtoiles(left, bottom, width, height, gap, n):
+def generateEtoiles(left, bottom, width, height, gap, quantity):
     """Generes une liste de n tuples (x,y,s)
     dont les coordonnees sont comprise dans le rect
     tout en respectant un espacement minimum"""
@@ -72,17 +72,14 @@ def generateEtoiles(left, bottom, width, height, gap, n):
     # On selection n couples parmis les coordonnees possibles,
     # on re-multiplie les coordonnees precedemment divisee par le gap
     # et on genere une taille aleatoire
-    return [(coor[0] * gap, coor[1] * gap, random.randint(10, 25)) for coor in random.sample(coordonnees, min(n, len(coordonnees)))]
+    return [(coor[0] * gap, coor[1] * gap, random.randint(10, 25)) for coor in random.sample(coordonnees, min(quantity, len(coordonnees)))]
 
 
 def etoiles(infos, t):
     """Dessine les etoiles de coordonnees et tailles definies"""
     t.clear()
     for info in infos:
-        r = 255
-        g = random.randint(200, 230)
-        b = 0
-        formes.etoile(info[0], info[1], info[2], (r, g, b), t)
+        formes.etoile(info[0], info[1], info[2], (255, random.randint(200, 230), 0), t)
 
     # On actualise l'affichage toute les demie-secondes
     turtle.ontimer(lambda: etoiles(infos, t), t=500)

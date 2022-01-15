@@ -106,6 +106,8 @@ def clickCases(x, y):
 
 
 def ecranDeFin(texte):
+    """"Affiche l'ecran de fin"""
+
     # On efface tout
     tc.clear()
     tp.clear()

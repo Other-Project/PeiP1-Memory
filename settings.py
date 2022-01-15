@@ -29,7 +29,7 @@ couleurs = [
 ]
 
 # Formes disponibles
-# Les fonctions doivent imperativement respecter les parametres suivants: 
+# Les fonctions doivent imperativement respecter les parametres suivants:
 # coordonnees x, y en bas a gauche, taille, couleur, tortue
 formes = [
     formes.etoile,
