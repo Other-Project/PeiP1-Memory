@@ -20,29 +20,20 @@ couleurs = [
     "blue",
     "red",
     "green",
-    "yellow",
-    "orange",
-    "pink",
     "gray",
     "violet",
-    "lightBlue",
-    "lightGreen",
     "brown",
-    "magenta",
+    "magenta"
 ]
 
 # Formes disponibles
 # Les fonctions doivent imperativement respecter les parametres suivants: 
 # coordonnees x, y en bas a gauche, taille, couleur, tortue
 formes = [
-    formes.rond,
-    formes.triangleEquilateral,
-    formes.carre,
-    formes.pentagone,
-    formes.hexagone,
-    formes.octogone,
-    formes.croix,
     formes.etoile,
     formes.coeur,
-    formes.sapin
+    formes.sapin,
+    formes.flocon,
+    formes.tasse,
+    formes.cookie
 ]

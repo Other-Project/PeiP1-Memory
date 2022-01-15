@@ -4,6 +4,7 @@ Ce module contient toutes fonctions de dessin des formes élémentaires
 """
 
 import math
+import turtle
 
 
 def dessine(x, y, couleur, t, a=0, w=5):
@@ -63,37 +64,15 @@ def polygone(x, y, taille, couleur, t, nbCotes, a=0, fill=True, fillColor=None):
     t.width(1)
 
 
-def triangleEquilateral(x, y, taille, c, t, fill=True):
-    """Dessine un triangle"""
-    tailleY = math.sqrt(calculeLongueurCote(taille, 3) ** 2 - (taille / 2) ** 2)
-    y += (taille - tailleY) / 2
-    polygone(x, y, taille, c, t, 3, fill=fill)
-
-
 def carre(x, y, longueur, c, t, fill=True, fillColor=None):
     """Dessine un carre"""
     polygone(x, y, longueur, c, t, 4, fill=fill, fillColor=fillColor)
 
 
-def pentagone(x, y, longueur, c, t, fill=True):
-    """Dessine un pentagone"""
-    polygone(x, y, longueur, c, t, 5, fill=fill)
-
-
-def hexagone(x, y, longueur, c, t, fill=True):
-    """Dessine un hexagone"""
-    polygone(x, y, longueur, c, t, 6, fill=fill)
-
-
-def octogone(x, y, longueur, c, t, fill=True):
-    """Dessine un octogone"""
-    polygone(x, y, longueur, c, t, 8, fill=fill)
-
-
-def rond(x, y, diametre, c, t, fill=True):
+def rond(x, y, diametre, c, t, fill=True, w=5):
     """Dessine un rond"""
     rayon = diametre / 2
-    dessine(x + rayon, y, c, t)
+    dessine(x + rayon, y, c, t,w)
     if fill:
         t.begin_fill()
     t.circle(rayon)
@@ -123,20 +102,6 @@ def rectangle(x, y, lX, lY, c, t, a=0):
         t.forward(lY)
         t.left(90)
     t.end_fill()
-
-
-# dessine une croix dans le carré de largeur l dont le point en bas
-# à gauche est (x,y), avec la tortue t
-def croix(x, y, l, c, t):
-    """Dessine une croix"""
-    dessine(x, y, c, t)
-    t.width(5)
-    t.goto(x + l, y + l)
-    t.up()
-    t.goto(x + l, y)
-    t.down()
-    t.goto(x, y + l)
-    t.width(1)
 
 
 def etoile(x, y, longueur, c, t):
@@ -175,3 +140,61 @@ def sapin(x, y, taille, c, t):
     carre(x+(taille-baseL)/2,y,baseL,"brown",t)
     triangle(x,y+baseL,taille,c,t, a=traingleA)
     triangle(x,y+baseL+triangleH,taille,c,t, a=traingleA)
+    
+
+def flocon(x, y, taille, c, t):
+    """Dessine un flocon"""
+    def branche(l):
+        """Dessine une branche du flocon"""
+        l/=3 # On divise la branche en 3 parties
+        t.forward(l)
+        for i in range(2): # Dessine un |/_
+            t.forward(l)
+            t.left(45)
+            t.forward(l)
+            t.backward(l)
+            t.right(90)
+            t.forward(l)
+            t.backward(l)
+            t.left(45)
+        t.backward(l*3) # Retour a la pos. initiale
+
+    dessine(x+taille/2, y+taille/2, c, t,w=2)
+    for i in range(8):
+      branche(taille/2)
+      t.left(45)
+
+def tasse(x, y, taille, c, t):
+    """Dessine une tasse"""
+    dessine(x, y+taille, c, t,w=1)
+    
+    # Dessine la tasse
+    t.begin_fill()
+    t.right(90)
+    t.forward(taille/2)
+    t.circle(taille/2,180)
+    t.forward(taille/2)
+    t.left(90)
+    t.forward(taille)
+    t.end_fill()
+    
+    # Dessine la anse
+    decalageAnse = taille * 0.05
+    anseRayon=taille/4 - decalageAnse
+    dessine(x+taille,y+taille/2 + decalageAnse, c, t,w=1)
+    t.begin_fill()
+    t.circle(anseRayon,180)
+    t.left(90)
+    t.forward(anseRayon / 2)
+    t.right(90)
+    t.circle(anseRayon / 2,-180)
+    t.end_fill()
+
+def cookie(x, y, taille, c, t):
+    """Dessine un cookie"""
+    rond(x, y, taille, "#DBA901", t)
+
+    # Pepites
+    rond(x+taille*0.7, y+taille*0.6, taille / 15, c, t,w=1)
+    rond(x+taille*0.2, y+taille*0.4, taille / 30, c, t,w=1)
+    rond(x+taille*0.6, y+taille*0.2, taille / 10, c, t,w=1)
