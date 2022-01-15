@@ -115,8 +115,15 @@ def etoile(x, y, longueur, c, t):
 
 def coeur(x, y, taille, c, t):
     """Dessine un coeur"""
-    tCarre = 4*taille / (3+math.sqrt(2))
-    l = tCarre * math.cos(math.radians(45))
+
+    # Soient hCreux la hauteur du creux du coeur
+    # et l la longueur du carre
+    # On sais que t = 3hCreux/4 + l/2
+    # Or l = hCreux*cos(45)
+    # Donc hCreux = 4t/(3+√2)
+    # Et donc l = 4t*cos(45)/(3+√2)
+    hCreux = 4*taille / (3+math.sqrt(2))
+    l = hCreux * math.cos(math.radians(45))
     dessine(x + taille / 2, y, c, t, a=45,w=1)
 
     t.begin_fill()
