@@ -16,7 +16,6 @@ xGrille = longueurGrille / -2 + settings.grilleCentreX  # Position x a laquelle 
 yGrille = hauteurGrille / -2 + settings.grilleCentreY  # Position y a laquelle demarre la grille
 
 
-
 def positionCase(i):
     """Calcule la position des cases"""
     y = int(i / settings.grilleColonnes)
@@ -40,7 +39,7 @@ def dessineCase(x, y, l, n, t, c="blue"):
     # Ecrit le chiffre n
     formes.texte(x + l / 2, y + l / 2, str(n), t)
 
-    
+
 def afficheContenu(tc, cases, choix=None):
     """Redessine l'entierete de la grille des cases
     en revelant le contenu des cases comprises dans choix
@@ -62,10 +61,12 @@ def afficheContenu(tc, cases, choix=None):
         else:
             dessineCase(x, y, settings.tailleCase, i + 1, tc)
 
-def barreProgression(tentatives, tentativesMax, t, xOffset = 0, yOffset = 100, tailleX = 150, tailleY = 10):
+
+def barreProgression(tentatives, tentativesMax, t, xOffset=0, yOffset=100, tailleX=150, tailleY=10):
     """dessine une barre de progression"""
+    t.clear() # On efface la barre precedente
     x = tailleX / -2 + xOffset
     y = tailleY / -2 + yOffset
-    t.clear()
-    formes.rectangle(x,y,tailleX, tailleY, "gray", t)
-    formes.rectangle(x+1,y+1,tentatives/tentativesMax * (tailleX-2), tailleY-2, "blue", t)
+    formes.rectangle(x, y, tailleX, tailleY, "gray", t) # Fond
+    formes.rectangle(x + 1, y + 1, tentatives / tentativesMax * (tailleX - 2), tailleY - 2, "blue", t) # Progression
+    formes.texte(xOffset, yOffset, str(tentatives) + " / " + str(tentativesMax), t, fontSize=int(tailleY * 0.75)) # Texte tentatives utilisées / autorisées

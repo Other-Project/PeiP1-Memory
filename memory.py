@@ -84,9 +84,6 @@ def clickCases(x, y):
 
     cartes.afficheContenu(tc, cases, [choix1, choix])
     turtle.update()  # On force l'actualisation de l'affichage
-
-    print(tentatives,"/",tentativesMax)
-    cartes.barreProgression(tentatives, tentativesMax, tp, yOffset=screenY / -2 + 100)
         
     if cases[choix1][0] == cases[choix][0] and cases[choix1][1] == cases[choix][1]:
         # Si les formes et les couleurs sont les memes, on garde les cases retournees
@@ -97,6 +94,7 @@ def clickCases(x, y):
         time.sleep(1)  # On attend une seconde
         cartes.afficheContenu(tc, cases)
         sleeping = False
+    cartes.barreProgression(tentatives, tentativesMax, tp, yOffset=screenY / -2 + 100)
 
     # S'il n'y a pas de case qui n'est pas retournee (cad toutes les cases sont retournees)
     if not any(not case[2] for case in cases): # Gagné !
