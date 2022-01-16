@@ -85,9 +85,9 @@ def etoiles(infos, t):
     turtle.ontimer(lambda: etoiles(infos, t), t=500)
 
 
-def bonhommeDeNeige(x, y, t):
-    """Dessine un bonhomme de neige"""
-    diametre = 100  # Diametre de la premiere boule de neige
+def bonhommeDeNeige(x, y, t, diametre=100):
+    """Dessine un bonhomme de neige
+    Le parametre optionnel diametre correspond au diametre de la premiere boule de neige"""
     diametre2 = diametre * 0.75  # Diametre de la 2e
     diametre3 = diametre * 0.50  # Diametre de la 3e
     x2 = x + (diametre - diametre2) / 2  # Coordonnee x (du pt en bas à gauche) de la 2e boule de neige
@@ -97,8 +97,8 @@ def bonhommeDeNeige(x, y, t):
 
     # batons qui forment les bras du bonhomme de neige
     angleBaton = 30
-    formes.rectangle(x2, y2 + diametre2 / 2, 50, 5, "brown", t, a=180 - angleBaton)
-    formes.rectangle(x2 + diametre2, y2 + diametre2 / 2, 50, 5, "brown", t, a=angleBaton)
+    formes.rectangle(x2, y2 + diametre2 / 2, diametre / 2, diametre * 0.05, "brown", t, a=180 - angleBaton)
+    formes.rectangle(x2 + diametre2, y2 + diametre2 / 2, diametre / 2, diametre * 0.05, "brown", t, a=angleBaton)
 
     # boules de neiges qui forment le corps du bonhomme
     formes.rond(x, y, diametre, "white", t, fill=True)
@@ -106,18 +106,19 @@ def bonhommeDeNeige(x, y, t):
     formes.rond(x3, y3, diametre3, "white", t, fill=True)
 
     # carotte du bonhomme de neige
-    hCarotte = 5
+    hCarotte = diametre * 0.05
     formes.triangle(x3 + diametre3 / 2, y3 + diametre3 / 3 + hCarotte, hCarotte, "orange", t, a=80, aDepart=270)
 
     # yeux sur le corps du bonhomme
-    rayonYeux = 3
+    rayonYeux = diametre * 0.03
     formes.rond(x3 + diametre3 / 6 - rayonYeux, y3 + 2 * diametre3 / 3, rayonYeux * 2, "black", t, fill=True)
     formes.rond(x3 + 5 * diametre3 / 6 - rayonYeux, y3 + 2 * diametre3 / 3, rayonYeux * 2, "black", t, fill=True)
 
     # boutons sur le corps du bonhomme
-    rayonBouton = 4
-    yButton = y + 25
+    rayonBouton = diametre * 0.04
+    ecartBoutons = diametre * 0.25
+    yButton = y + ecartBoutons
     for i in range(3):
-        formes.rond(x + diametre / 2 - rayonBouton, yButton + i * 25, rayonBouton * 2, "black", t, fill=True)
+        formes.rond(x + diametre / 2 - rayonBouton, yButton + i * ecartBoutons, rayonBouton * 2, "black", t, fill=True)
 
     return y3 + diametre3
