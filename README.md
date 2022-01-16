@@ -100,19 +100,28 @@ Pour la construction du bonhomme de neige, nous nous sommes servis de la fonctio
 # Informations supplémentaires
 
 ## La durée du projet
+
 Ce projet a été réalisé en une quarantaine d’heures réparties sur 6 semaines.
 
 ## Problèmes rencontrés
-Durant le développement de ce projet nous n’avons pas rencontré de problèmes majeurs mis à part : **TODO**
+
+Durant le développement de ce projet nous n’avons pas rencontré de problèmes majeurs.  
+Voici une liste non exhaustive des soucis que l’on a eu ainsi que la solution que l’on a trouvée :
+*   L’affichage qui ne s’actualise pas : Utilisation de la fonction `update` de *turtle*
+*   La récupération de la taille de la fenêtre : Utilisation de `turtle.Screen().window_width()` et `turtle.Screen().window_height()`
+*   Le redimensionnement de la fenêtre qui cause un problème de positionnement du décor : Désactivation du redimensionnement grâce à la `fonction turtle.Screen().cv._rootwindow.resizable`
+*   La génération aléatoire des paires de cartes qui privilégie les couples dont la couleur et la forme n’est pas sortie : Utilisation d’`itertools.product` pour calculer les combinaisons possible et choix des paires en fonction de leur position dans la liste
+
 
 # Améliorations possibles
 
-*   Une amélioration possible pour notre jeu serait de pouvoir choisir la difficulté au démarrage. Celle-ci pourrait par exemple consister en une diminution du le nombre de tentatives autorisées, ou encore par une augmentation du nombre de cartes dans la partie.
-*   Une autre amélioration possible serait de pouvoir recommencer la partie sans avoir à redémarrer le jeu.
+Bien que notre jeu soit parfaitement fonctionnel, il pourrait être améliorer sur certains points :
+*   Avoir la possibilité de choisir la difficulté au démarrage. Celle-ci pourrait par exemple consister en une diminution du nombre de tentatives autorisées, ou encore par une augmentation du nombre de cartes dans la partie.
+*   Pouvoir recommencer la partie sans avoir à redémarrer le jeu
 *   L’algorithme de calcul du nombre de tentatives pourrait être ajusté pour être plus en raccord avec la difficulté réelle : 4 tentatives pour 2 couples, c’est gagné d’avance, mais 60 tentatives pour 30 couples, ça l’est beaucoup moins !
 *   Enfin, on pourrait imaginer implémenter un système de saison dans le jeu qui changerait les cartes et le décor en fonction de celles-ci.
 
+
 # Ce que le projet nous a apporté
 
-**TODO**  
 Finalement ce projet a été une réelle façon de s’entraîner à la programmation python. Devoir rechercher des solutions aux problèmes auxquels nous avons dû faire face, nous a aussi permis d’imaginer le travail de développeur en entreprise avec un travail précis à réaliser tout en devant respecter une date limite. De plus cela nous a aussi permis d’utiliser et de découvrir certains logiciels et plateforme de programmation. Mais encore cela nous a aussi permis d’apprendre le travail en équipe et nous appris à être coordonnée par exemple en répartissant les tâches de travail et en mettant en place des horaires de travail en communs notamment par appels discord pendant les vacances par exemple. Enfin ce projet nous à permit d’améliorer notre niveau en python peut importe notre niveau de base.
