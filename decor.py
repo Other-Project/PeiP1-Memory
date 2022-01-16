@@ -101,9 +101,9 @@ def bonhommeDeNeige(x, y, t, diametre=100):
     formes.rectangle(x2 + diametre2, y2 + diametre2 / 2, diametre / 2, diametre * 0.05, "brown", t, a=angleBaton)
 
     # boules de neiges qui forment le corps du bonhomme
-    formes.rond(x, y, diametre, "white", t, fill=True)
-    formes.rond(x2, y2, diametre2, "white", t, fill=True)
-    formes.rond(x3, y3, diametre3, "white", t, fill=True)
+    formes.rond(x, y, diametre, "white", t)
+    formes.rond(x2, y2, diametre2, "white", t)
+    formes.rond(x3, y3, diametre3, "white", t)
 
     # carotte du bonhomme de neige
     hCarotte = diametre * 0.05
@@ -111,14 +111,15 @@ def bonhommeDeNeige(x, y, t, diametre=100):
 
     # yeux sur le corps du bonhomme
     rayonYeux = diametre * 0.03
-    formes.rond(x3 + diametre3 / 6 - rayonYeux, y3 + 2 * diametre3 / 3, rayonYeux * 2, "black", t, fill=True)
-    formes.rond(x3 + 5 * diametre3 / 6 - rayonYeux, y3 + 2 * diametre3 / 3, rayonYeux * 2, "black", t, fill=True)
+    yYeux = y3 + 2 * diametre3 / 3
+    formes.rond(x3 + diametre3 / 6 - rayonYeux, yYeux, rayonYeux * 2, "black", t)
+    formes.rond(x3 + 5 * diametre3 / 6 - rayonYeux, yYeux, rayonYeux * 2, "black", t)
 
     # boutons sur le corps du bonhomme
     rayonBouton = diametre * 0.04
     ecartBoutons = diametre * 0.25
     yButton = y + ecartBoutons
     for i in range(3):
-        formes.rond(x + diametre / 2 - rayonBouton, yButton + i * ecartBoutons, rayonBouton * 2, "black", t, fill=True)
+        formes.rond(x + diametre / 2 - rayonBouton, yButton + i * ecartBoutons, rayonBouton * 2, "black", t)
 
     return y3 + diametre3
