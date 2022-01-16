@@ -23,10 +23,10 @@ def point(x, y, t, w=5, couleur="blue"):
     t.forward(1)
 
 
-def texte(x, y, txt, t, fontSize=14, c="white"):
+def texte(x, y, txt, t, fontSize=14, couleur="white"):
     """Ecrit du texte centré en x,y"""
     width = fontSize / 1.5  # Monaco utilise un rapport h/l de ~1.5
-    dessine(x - width // 2 * len(txt), y - fontSize, c, t)
+    dessine(x - width // 2 * len(txt), y - fontSize, couleur, t)
     t.write(txt, font=("Monaco", fontSize, "normal"))
 
 
@@ -41,9 +41,9 @@ def rond(x, y, diametre, couleur, t, fill=True, w=5):
         t.end_fill()
 
 
-def triangle(x, y, longueur, couleur, t, a=180 / 3, aDepart=0):
+def triangle(x, y, longueur, couleur, t, a=180 / 3, aDepart=0, w=5):
     """Dessine un triangle en fct de la longueur de sa base"""
-    dessine(x, y, couleur, t, a=aDepart)
+    dessine(x, y, couleur, t, a=aDepart, w=w)
     t.fillcolor(couleur)
     t.begin_fill()
 
@@ -71,14 +71,13 @@ def rectangle(x, y, longueur, hauteur, couleur, t, a=0, fill=True, fillColor=Non
         t.end_fill()
 
 
-def etoile(x, y, longueur, couleur, t):
+def etoile(x, y, longueur, couleur, t, w=5):
     """Dessine une etoile"""
     taille = 2 * longueur / 3  # Les triangles font les 2/3 de la taille totale
     x += (longueur - taille) / 2  # On centre les triangles
-
-    dessine(x, y, couleur, t)
-    triangle(x, y + longueur / 3, taille, couleur, t)  # Premier triangle
-    triangle(x + taille, y + 2 * longueur / 3, taille, couleur, t, aDepart=180)  # Deuxieme triangle
+    
+    triangle(x, y + longueur / 3, taille, couleur, t, w=w)  # Premier triangle
+    triangle(x + taille, y + 2 * longueur / 3, taille, couleur, t, aDepart=180, w=w)  # Deuxieme triangle
 
 
 def coeur(x, y, taille, couleur, t):

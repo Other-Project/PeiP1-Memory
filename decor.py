@@ -79,7 +79,7 @@ def etoiles(infos, t):
     """Dessine les etoiles de coordonnees et tailles definies"""
     t.clear()
     for info in infos:
-        formes.etoile(info[0], info[1], info[2], (255, random.randint(200, 230), 0), t)
+        formes.etoile(info[0], info[1], info[2], (255, random.randint(200, 230), 0), t, w=1)
 
     # On actualise l'affichage toute les demie-secondes
     turtle.ontimer(lambda: etoiles(infos, t), t=500)
