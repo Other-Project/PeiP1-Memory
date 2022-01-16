@@ -34,7 +34,7 @@ def obtenirCase(x, y):
 
 def dessineCase(x, y, l, n, t, covered=True, c="#0431B4", fillColor="#BBF"):
     """Dessine une carte de taille l, d'index n et retournee ou non (covered)"""
-    formes.carre(x, y, l, c, t,w=1, fillColor=None if covered else fillColor)
+    formes.rectangle(x, y, l, l, c, t,w=1, fillColor=None if covered else fillColor)
 
     # Neige sur la carte
     formes.dessine(x,y+l,"white",t,w=1)

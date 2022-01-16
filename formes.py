@@ -71,11 +71,6 @@ def rectangle(x, y, longueur, hauteur, couleur, t, a=0, fill=True, fillColor=Non
         t.end_fill()
 
 
-def carre(x, y, longueur, couleur, t, fill=True, fillColor=None, w=5):
-    """Dessine un carre"""
-    rectangle(x, y, longueur, longueur, couleur, t, fill=fill, fillColor=fillColor, w=w)
-
-
 def etoile(x, y, longueur, couleur, t):
     """Dessine une etoile"""
     taille = 2 * longueur / 3  # Les triangles font les 2/3 de la taille totale
@@ -115,7 +110,7 @@ def sapin(x, y, taille, couleur, t):
 
     # Tronc
     baseL = taille / 4
-    carre(x + (taille - baseL) / 2, y, baseL, "brown", t)
+    rectangle(x + (taille - baseL) / 2, y, baseL, baseL, "brown", t)
 
     # Feuilles
     triangleH = (taille - baseL) / 2
