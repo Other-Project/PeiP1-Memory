@@ -56,9 +56,9 @@ def triangle(x, y, longueur, couleur, t, a=180 / 3, aDepart=0):
     t.end_fill()
 
 
-def rectangle(x, y, longueur, hauteur, couleur, t, a=0, fill=True, fillColor=None):
+def rectangle(x, y, longueur, hauteur, couleur, t, a=0, fill=True, fillColor=None, w=5):
     """Dessine un rectangle"""
-    dessine(x, y, couleur, t, a=a)
+    dessine(x, y, couleur, t, a=a, w=w)
     if fill:
         t.fillcolor(fillColor or couleur)
         t.begin_fill()
@@ -71,9 +71,9 @@ def rectangle(x, y, longueur, hauteur, couleur, t, a=0, fill=True, fillColor=Non
         t.end_fill()
 
 
-def carre(x, y, longueur, couleur, t, fill=True, fillColor=None):
+def carre(x, y, longueur, couleur, t, fill=True, fillColor=None, w=5):
     """Dessine un carre"""
-    rectangle(x, y, longueur, longueur, couleur, t, fill=fill, fillColor=fillColor)
+    rectangle(x, y, longueur, longueur, couleur, t, fill=fill, fillColor=fillColor, w=w)
 
 
 def etoile(x, y, longueur, couleur, t):

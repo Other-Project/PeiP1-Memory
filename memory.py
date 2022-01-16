@@ -113,7 +113,7 @@ def ecranDeFin(texte):
     tp.clear()
 
     formes.texte(settings.grilleCentreX, settings.grilleCentreY, texte, tc, fontSize=24)
-    turtle.onscreenclick(lambda x, y: turtle.bye())  # On ferme le jeu si l'utilisateur clique
+    turtle.exitonclick()  # On ferme le jeu si l'utilisateur clique
 
 
 # Boucle de jeu

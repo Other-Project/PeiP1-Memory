@@ -8,7 +8,7 @@ import formes
 # Grille
 grilleColonnes = 4  # Nombre de cases sur x
 grilleLignes = 4  # Nombre de cases sur y
-tailleCase = 60  # Taille des cases
+tailleCase = 80  # Taille des cases
 grillePadding = 40  # Espacement entre les cases
 grilleCentreX = 0  # Position en x du centre de la grille
 grilleCentreY = 150  # Position en y du centre de la grille
