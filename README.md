@@ -112,7 +112,6 @@ Voici une liste non exhaustive des soucis que l’on a eu ainsi que la solution 
 *   Le redimensionnement de la fenêtre qui cause un problème de positionnement du décor : Désactivation du redimensionnement grâce à la `fonction turtle.Screen().cv._rootwindow.resizable`
 *   La génération aléatoire des paires de cartes qui privilégie les couples dont la couleur et la forme n’est pas sortie : Utilisation d’`itertools.product` pour calculer les combinaisons possible et choix des paires en fonction de leur position dans la liste
 
-
 # Améliorations possibles
 
 Bien que notre jeu soit parfaitement fonctionnel, il pourrait être améliorer sur certains points :
@@ -120,7 +119,6 @@ Bien que notre jeu soit parfaitement fonctionnel, il pourrait être améliorer s
 *   Pouvoir recommencer la partie sans avoir à redémarrer le jeu
 *   L’algorithme de calcul du nombre de tentatives pourrait être ajusté pour être plus en raccord avec la difficulté réelle : 4 tentatives pour 2 couples, c’est gagné d’avance, mais 60 tentatives pour 30 couples, ça l’est beaucoup moins !
 *   Enfin, on pourrait imaginer implémenter un système de saison dans le jeu qui changerait les cartes et le décor en fonction de celles-ci.
-
 
 # Ce que le projet nous a apporté
 

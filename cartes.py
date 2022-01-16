@@ -10,8 +10,8 @@ nombreCases = settings.grilleLignes * settings.grilleColonnes
 tailleContenu = settings.tailleCase / 2  # Le contenu est deux fois plus petit que la case
 marginContenu = (settings.tailleCase - tailleContenu) / 2  # Decalage (en x et y) du contenu par rapport a la case
 distCases = settings.tailleCase + settings.grillePadding  # Distance entre chaque case (au pt en bas a gauche)
-longueurGrille = distCases * settings.grilleColonnes  # Taille de la grille en x
-hauteurGrille = distCases * settings.grilleLignes  # Taille de la grille en y
+longueurGrille = distCases * settings.grilleColonnes - settings.grillePadding  # Taille de la grille en x
+hauteurGrille = distCases * settings.grilleLignes - settings.grillePadding  # Taille de la grille en y
 xGrille = longueurGrille / -2 + settings.grilleCentreX  # Position x a laquelle demarre la grille
 yGrille = hauteurGrille / -2 + settings.grilleCentreY  # Position y a laquelle demarre la grille
 

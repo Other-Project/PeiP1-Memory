@@ -25,8 +25,8 @@ def point(x, y, t, w=5, couleur="blue"):
 
 def texte(x, y, txt, t, fontSize=14, couleur="white"):
     """Ecrit du texte centré en x,y"""
-    width = fontSize / 1.5  # Monaco utilise un rapport h/l de ~1.5
-    dessine(x - width // 2 * len(txt), y - fontSize, couleur, t)
+    width = fontSize / 1.26  # Monaco utilise un rapport h/l de ~1.26
+    dessine(x - width * len(txt) // 2, y - fontSize, couleur, t)
     t.write(txt, font=("Monaco", fontSize, "normal"))
 
 
