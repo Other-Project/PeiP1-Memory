@@ -71,10 +71,10 @@ C’est le fichier qui contient les paramètres du jeu (comme le nombre de carte
 
 C’est le module qui chargé du bon fonctionnement de la grille. C’est lui qui positionne et dessine les cartes et leur contenu.
 Dans le fichier il y a plusieurs fonctions :
-  * La fonction `dessineCase` qui dessine la carte.
-  * La fonction `positionCase` qui calcule la position de la carte d’index i.
-  * La fonction `obtenirCase` qui calcule l’index de la carte présente aux coordonnées x, y.
-  * La fonction `afficheContenu` qui dessine les cartes non sélectionnées et qui révèle le contenu des cartes sélectionnées et de celles qui ont déjà été révélées (les paires de cartes déjà trouvée).
+*   La fonction `dessineCase` qui dessine la carte.
+*   La fonction `positionCase` qui calcule la position de la carte d’index i.
+*   La fonction `obtenirCase` qui calcule l’index de la carte présente aux coordonnées x, y.
+*   La fonction `afficheContenu` qui dessine les cartes non sélectionnées et qui révèle le contenu des cartes sélectionnées et de celles qui ont déjà été révélées (les paires de cartes déjà trouvée).
 
 ## Formes
 
@@ -87,11 +87,15 @@ Chacune de fonctions sont assez détaillées et nécessite pas forcement beaucou
 
 La fonction `main` du module *decor* est appelé dans le programme principale. Celle-ci est chargée d’appeler le reste des fonctions de décor qui ont pour rôle de tracer des objets. Le programme principal étant indépendant du décor il serait possible de créer plusieurs décors sans avoir à changer le reste du programme (on pourrait créer par exemple plusieurs saisons), pour cela il suffirait de changer le module décor.
 Le fichier *decor* est décomposé en plusieurs fonctions :
-  * La fonction `main` : c’est la fonction qui est appelée par le programme principale et qui appelle les différentes fonctions chargées de tracer le décor.
-  * La fonction `generateEtoiles` qui créer une liste de n tuples (x, y, taille), en respectant un espacement minimum entre les étoiles afin d’éviter qu’elle se superposent.
-  * La fonction `etoiles`, cette fonction permet de tracer les étoiles en fonction des n tuples obtenus grâce à la fonction `generateEtoiles`.
-  * La fonction `bonhommeDeNeige` : trace un bonhomme de neige  
-  Pour la construction du bonhomme de neige, nous nous sommes servis de la fonction `rond` présente dans le module *formes* pour tracer les corps du bonhomme de neige ainsi que ses yeux et les boutons qui sont sur son corps. Nous nous sommes servis de la fonction `triangle` qui se trouve dans *formes*, afin de tracer un triangle orange à l’horizontale qui représente la carotte (le nez du bonhomme de neige). Enfin, nous avons utilisé la fonction `rectangle` de *formes* pour tracer les bâtons qui forment les bras du bonhomme de neige, cette fonction appelé de façon à tracer un rectangle marron incliné d’un angle respectif de 30 et 150 degrés.
+
+*   La fonction `main` : c’est la fonction qui est appelée par le programme principale et qui appelle les différentes fonctions chargées de tracer le décor.
+
+*   La fonction `generateEtoiles` qui créer une liste de n tuples (x, y, taille), en respectant un espacement minimum entre les étoiles afin d’éviter qu’elle se superposent.
+
+*   La fonction `etoiles`, cette fonction permet de tracer les étoiles en fonction des n tuples obtenus grâce à la fonction `generateEtoiles`.
+
+*   La fonction `bonhommeDeNeige` : trace un bonhomme de neige  
+Pour la construction du bonhomme de neige, nous nous sommes servis de la fonction `rond` présente dans le module *formes* pour tracer les corps du bonhomme de neige ainsi que ses yeux et les boutons qui sont sur son corps. Nous nous sommes servis de la fonction `triangle` qui se trouve dans *formes*, afin de tracer un triangle orange à l’horizontale qui représente la carotte (le nez du bonhomme de neige). Enfin, nous avons utilisé la fonction `rectangle` de *formes* pour tracer les bâtons qui forment les bras du bonhomme de neige, cette fonction appelé de façon à tracer un rectangle marron incliné d’un angle respectif de 30 et 150 degrés.
 
 # Informations supplémentaires
 
@@ -103,10 +107,10 @@ Durant le développement de ce projet nous n’avons pas rencontré de problème
 
 # Améliorations possibles
 
-  * Une amélioration possible pour notre jeu serait de pouvoir choisir la difficulté au démarrage. Celle-ci pourrait par exemple consister en une diminution du le nombre de tentatives autorisées, ou encore par une augmentation du nombre de cartes dans la partie.
-  * Une autre amélioration possible serait de pouvoir recommencer la partie sans avoir à redémarrer le jeu.
-  * L’algorithme de calcul du nombre de tentatives pourrait être ajusté pour être plus en raccord avec la difficulté réelle : 4 tentatives pour 2 couples, c’est gagné d’avance, mais 60 tentatives pour 30 couples, ça l’est beaucoup moins !
-  * Enfin, on pourrait imaginer implémenter un système de saison dans le jeu qui changerait les cartes et le décor en fonction de celles-ci.
+*   Une amélioration possible pour notre jeu serait de pouvoir choisir la difficulté au démarrage. Celle-ci pourrait par exemple consister en une diminution du le nombre de tentatives autorisées, ou encore par une augmentation du nombre de cartes dans la partie.
+*   Une autre amélioration possible serait de pouvoir recommencer la partie sans avoir à redémarrer le jeu.
+*   L’algorithme de calcul du nombre de tentatives pourrait être ajusté pour être plus en raccord avec la difficulté réelle : 4 tentatives pour 2 couples, c’est gagné d’avance, mais 60 tentatives pour 30 couples, ça l’est beaucoup moins !
+*   Enfin, on pourrait imaginer implémenter un système de saison dans le jeu qui changerait les cartes et le décor en fonction de celles-ci.
 
 # Ce que le projet nous a apporté
 
